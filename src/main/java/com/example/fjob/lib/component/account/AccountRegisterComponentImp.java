@@ -1,10 +1,10 @@
-package com.example.fjob.lib.component;
+package com.example.fjob.lib.component.account;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.example.fjob.lib.dataset.AccountRegisterDataset;
-import com.example.fjob.lib.mapper.AccountRegisterMapper;
+import com.example.fjob.lib.dataset.account.AccountRegisterDataset;
+import com.example.fjob.lib.mapper.account.AccountRegisterMapper;
 
 @Component
 public class AccountRegisterComponentImp implements AccountRegisterComponent{

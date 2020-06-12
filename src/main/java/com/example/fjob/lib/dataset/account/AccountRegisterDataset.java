@@ -1,4 +1,4 @@
-package com.example.fjob.lib.dataset;
+package com.example.fjob.lib.dataset.account;
 
 public class AccountRegisterDataset {
 	private String userName;

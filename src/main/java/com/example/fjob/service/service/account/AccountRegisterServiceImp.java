@@ -1,10 +1,10 @@
-package com.example.fjob.service.service;
+package com.example.fjob.service.service.account;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.fjob.lib.component.AccountRegisterComponent;
-import com.example.fjob.lib.dataset.AccountRegisterDataset;
+import com.example.fjob.lib.component.account.AccountRegisterComponent;
+import com.example.fjob.lib.dataset.account.AccountRegisterDataset;
 
 @Service
 public class AccountRegisterServiceImp implements AccountRegisterService{

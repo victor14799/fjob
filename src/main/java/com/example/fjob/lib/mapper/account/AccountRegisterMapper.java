@@ -1,10 +1,10 @@
-package com.example.fjob.lib.mapper;
+package com.example.fjob.lib.mapper.account;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.example.fjob.lib.dataset.AccountRegisterDataset;
+import com.example.fjob.lib.dataset.account.AccountRegisterDataset;
 
 @Mapper
 public interface AccountRegisterMapper {
