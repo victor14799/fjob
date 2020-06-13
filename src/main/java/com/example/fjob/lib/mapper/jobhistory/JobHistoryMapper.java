@@ -1,9 +1,8 @@
 package com.example.fjob.lib.mapper.jobhistory;
 
 import com.example.fjob.lib.dataset.jobhistory.JobHistoryDataset;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import com.example.fjob.lib.dataset.jobhistory.JobParamDataset;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -25,4 +24,29 @@ public interface JobHistoryMapper {
             "WHERE BID_USER = #{bidUser}")
     List<JobHistoryDataset> getJobHistory(@Param("bidUser" ) String bidUser);
 
+    @Insert("INSERT INTO JOB_HISTORY " +
+            "(POST_ID, " +
+            "BID_USER, " +
+            "PRICE, " +
+            "STATUS, " +
+            "INS_DATE, " +
+            "UPD_DATE) " +
+            "   VALUES" +
+            "(#{postId}, " +
+            "#{bidUser}, " +
+            "#{price} , " +
+            "#{status} , " +
+            "CURRENT_TIMESTAMP, " +
+            "CURRENT_TIMESTAMP) ")
+    int addJob(JobParamDataset paramDataset);
+
+    @Update("UPDATE JOB_HISTORY  " +
+            "SET FEEDBACK= #{feedback}, " +
+            "COMMENT=#{comment}, " +
+            "STATUS=#{status}, " +
+            "UPD_DATE = CURRENT_TIMESTAMP  " +
+            "WHERE " +
+            "   POST_ID=#{postId} " +
+            "   AND BID_USER=#{bidUser}")
+    int updateFeedback(JobParamDataset paramDataset);
 }
