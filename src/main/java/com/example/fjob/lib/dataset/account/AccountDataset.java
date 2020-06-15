@@ -1,6 +1,6 @@
 package com.example.fjob.lib.dataset.account;
 
-public class AccountRegisterDataset {
+public class AccountDataset {
 	private String userName;
 	private String password;
 	private String addr;
