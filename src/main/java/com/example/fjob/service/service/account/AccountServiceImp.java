@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.fjob.lib.component.account.AccountComponent;
 import com.example.fjob.lib.dataset.account.AccountDataset;
+import com.example.fjob.lib.dataset.otp.OTPDataset;
 
 @Service
 public class AccountServiceImp implements AccountService{
@@ -53,6 +54,13 @@ public class AccountServiceImp implements AccountService{
 	@Override
 	public int countNumberUser() {
 		return component.countNumberUser();
+	}
+
+	//verify account
+	
+	@Override
+	public int verifyAccount(OTPDataset otp) {
+		return component.verifyAccount(otp);
 	}
 
 	

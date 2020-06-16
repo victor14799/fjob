@@ -2,7 +2,9 @@ package com.example.fjob.lib.component.account;
 
 import java.util.List;
 
+import com.example.fjob.lib.component.otp.OTPComponent;
 import com.example.fjob.lib.dataset.account.AccountDataset;
+import com.example.fjob.lib.dataset.otp.OTPDataset;
 
 public interface AccountComponent {
 	
@@ -25,4 +27,8 @@ public interface AccountComponent {
  //count number of user
  
  int countNumberUser();
+ 
+ //verify account
+ 
+ int verifyAccount(OTPDataset otp);
 }

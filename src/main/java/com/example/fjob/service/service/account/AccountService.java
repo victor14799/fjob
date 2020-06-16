@@ -3,6 +3,7 @@ package com.example.fjob.service.service.account;
 import java.util.List;
 
 import com.example.fjob.lib.dataset.account.AccountDataset;
+import com.example.fjob.lib.dataset.otp.OTPDataset;
 
 public interface AccountService {
 	 
@@ -26,4 +27,8 @@ List<AccountDataset> getAllUser();
 //count number of user
 
 int countNumberUser();
+
+//verify account
+
+int verifyAccount(OTPDataset otp);
 }

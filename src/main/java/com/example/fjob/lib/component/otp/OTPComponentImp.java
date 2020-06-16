@@ -60,8 +60,8 @@ public class OTPComponentImp implements OTPComponent {
     @Override
     public boolean validateOTP(OTPDataset otpDataset) {
         // Check is have OTP in DB yet
+    	System.out.println(otpDataset.getOtp() + " asdasd");
         OTPDataset otp = mapper.getOTP(otpDataset);
-
         if(otp != null){
             Date realTime = new Date();
             // If OTP is inserted 5 minutes less than real-time

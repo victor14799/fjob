@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.fjob.lib.dataset.account.AccountDataset;
+import com.example.fjob.lib.dataset.otp.OTPDataset;
 import com.example.fjob.service.service.account.AccountService;
 
 @RestController
@@ -63,4 +64,11 @@ public ResponseEntity<Integer> countNumberUser(){
 	return new ResponseEntity<>(service.countNumberUser(),HttpStatus.OK);
 }
 //verify account 
+@PutMapping("/verify-account")
+public ResponseEntity<Integer> verifyAccount(@RequestBody OTPDataset otp){
+	Integer result = service.verifyAccount(otp);
+	if(result > 0)
+	return new ResponseEntity<>(result,HttpStatus.OK);
+	return new ResponseEntity<Integer>(result,HttpStatus.NOT_ACCEPTABLE);
+}
 }

@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.example.fjob.lib.dataset.account.AccountDataset;
+import com.example.fjob.lib.dataset.otp.OTPDataset;
 
 @Mapper
 public interface AccountMapper {
@@ -93,10 +94,11 @@ public interface AccountMapper {
 			+ "FROM account")
 	int countNumberUser();
 	
-//	//VERIFY ACCOUNT 
-//	
-//	@Update("UPDATE account "
-//			+ "SET is_verify = '1' "
-//			+ "WHERE user_name = ")
-//	
+	//VERIFY ACCOUNT 
+	
+	@Update("UPDATE account "
+			+ "SET is_verify = '1' "
+			+ "WHERE user_name = #{otp.userName}")
+	int verifyAccount(@Param("otp") OTPDataset otp);
+	
 }
