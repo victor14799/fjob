@@ -101,4 +101,13 @@ public interface AccountMapper {
 			+ "WHERE user_name = #{otp.userName}")
 	int verifyAccount(@Param("otp") OTPDataset otp);
 	
+	
+	//UPDATE BALANCE
+	@Update("UPDATE account "
+			+ "SET BALANCE = #{balance} "
+			+ "WHERE user_name = #{userName}")
+	int updateBalance(@Param("balance") String balance, @Param("userName") String userName);
+	
+	//UPDATE PROFILE
+	//addr,firstName,lastName,phoneNo,img,?rank?,role
 }

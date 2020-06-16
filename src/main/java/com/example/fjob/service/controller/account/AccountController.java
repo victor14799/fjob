@@ -71,4 +71,13 @@ public ResponseEntity<Integer> verifyAccount(@RequestBody OTPDataset otp){
 	return new ResponseEntity<>(result,HttpStatus.OK);
 	return new ResponseEntity<Integer>(result,HttpStatus.NOT_ACCEPTABLE);
 }
+
+//update balance
+@PutMapping("/update-balance")
+public ResponseEntity<Integer> updateBalance(@RequestParam("balance") String balance, @RequestParam("userName") String userName){
+	Integer result = service.updateBalance(balance, userName);
+	if(result > 0)
+	return new ResponseEntity<>(result,HttpStatus.OK);
+	return new ResponseEntity<Integer>(result,HttpStatus.NOT_ACCEPTABLE);
+}
 }

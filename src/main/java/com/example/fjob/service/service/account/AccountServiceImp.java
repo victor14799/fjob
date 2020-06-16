@@ -63,6 +63,11 @@ public class AccountServiceImp implements AccountService{
 		return component.verifyAccount(otp);
 	}
 
+	@Override
+	public int updateBalance(String balance, String userName) {
+		return component.updateBalance(balance, userName);
+	}
+
 	
 
 }

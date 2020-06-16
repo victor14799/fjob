@@ -17,8 +17,9 @@ AccountMapper mapper;
 OTPComponent otpComponent;
 
 @Autowired
-public AccountComponentImp(AccountMapper mapper) {
+public AccountComponentImp(AccountMapper mapper,OTPComponent otpComponent) {
 	this.mapper = mapper;
+	this.otpComponent = otpComponent;
 }
 
 // Insert New Account
@@ -62,15 +63,15 @@ public int countNumberUser() {
 
 @Override
 public int verifyAccount(OTPDataset otp) {
-////	boolean result = otpComponent.validateOTP(otp);
-//	System.out.println("otp " + otp.getOtp());
-//	System.out.println("check: " + result);
-//	 if(result) {
-//		 return mapper.verifyAccount(otp);
-//	 }
+	boolean result = otpComponent.validateOTP(otp);
+	 if(result) {
+		 return mapper.verifyAccount(otp);
+	 }
 	 return 0;
 }
 
-
-
+@Override
+public int updateBalance(String balance, String userName) {
+return mapper.updateBalance(balance, userName);
+}
 }

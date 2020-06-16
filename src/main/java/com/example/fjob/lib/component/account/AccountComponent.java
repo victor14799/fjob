@@ -31,4 +31,8 @@ public interface AccountComponent {
  //verify account
  
  int verifyAccount(OTPDataset otp);
+ 
+ //update balance
+ 
+ int updateBalance(String balance,String userName);
 }
