@@ -97,17 +97,43 @@ public interface AccountMapper {
 	//VERIFY ACCOUNT 
 	
 	@Update("UPDATE account "
-			+ "SET is_verify = '1' "
+			+ "SET is_verify = '1', "
+			+ "UPD_DATE = clock_timestamp() "
 			+ "WHERE user_name = #{otp.userName}")
 	int verifyAccount(@Param("otp") OTPDataset otp);
 	
 	
 	//UPDATE BALANCE
 	@Update("UPDATE account "
-			+ "SET BALANCE = #{balance} "
+			+ "SET BALANCE = #{balance},"
+			+ "UPD_DATE = clock_timestamp()  "
 			+ "WHERE user_name = #{userName}")
 	int updateBalance(@Param("balance") String balance, @Param("userName") String userName);
 	
 	//UPDATE PROFILE
-	//addr,firstName,lastName,phoneNo,img,?rank?,role
+	@Update("UPDATE account "
+			+ "SET first_name = #{firstName},"
+			+ "last_name = #{lastName},"
+			+ "addr = #{addr},"
+			+ "phone_no = #{phoneNo},"
+			+ "img = #{img},"
+			+ "role = #{role},"
+			+ "email = #{email},"
+			+ "UPD_DATE = clock_timestamp() "
+			+ "WHERE user_name = #{userName}")
+	int updateProfile(AccountDataset account);
+	
+//	//UPDATE PASSWORD
+//	@Update("UPDATE account "
+//			+ "SET password = #{password}"
+//			+ "UPD_DATE = clock_timestamp() "
+//			+ "WHERE user_name = #{userName}")
+//	int updatePassword(@Param("password") String password);
+	
+	//VERIFY STUDENT
+	@Update("UPDATE account "
+			+ "SET is_student = '1',"
+			+ "UPD_DATE = clock_timestamp() "
+			+ "WHERE user_name = #{userName}")
+	int verifyStudent(@Param("userName") String userName);
 }

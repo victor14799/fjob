@@ -70,8 +70,35 @@ public int verifyAccount(OTPDataset otp) {
 	 return 0;
 }
 
+//update balance
+
 @Override
 public int updateBalance(String balance, String userName) {
 return mapper.updateBalance(balance, userName);
+}
+
+//update profile
+
+@Override
+public int updateProfile(AccountDataset account) {
+	return mapper.updateProfile(account);
+}
+
+////update password
+//
+//@Override
+//public int updatePassword(String password) {
+//	return mapper.updatePassword(password);
+//}
+
+//verify student
+
+@Override
+public int verifyStudent(String userName, String email) {
+	boolean result = email.endsWith("fpt.edu.vn");
+	if(result) {
+		return mapper.verifyStudent(userName);
+	}
+	return 0;
 }
 }

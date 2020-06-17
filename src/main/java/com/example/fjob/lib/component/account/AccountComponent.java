@@ -35,4 +35,16 @@ public interface AccountComponent {
  //update balance
  
  int updateBalance(String balance,String userName);
+ 
+ //update profile 
+ 
+ int updateProfile(AccountDataset account);
+ 
+// //update password
+// 
+// int updatePassword(String password);
+ 
+ //verify student
+ 
+ int verifyStudent(String userName,String email);
 }

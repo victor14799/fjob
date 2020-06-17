@@ -80,4 +80,22 @@ public ResponseEntity<Integer> updateBalance(@RequestParam("balance") String bal
 	return new ResponseEntity<>(result,HttpStatus.OK);
 	return new ResponseEntity<Integer>(result,HttpStatus.NOT_ACCEPTABLE);
 }
+
+//update profile
+@PutMapping("/update-profile")
+public ResponseEntity<Integer> updateProfile(@RequestBody AccountDataset account){
+	Integer result = service.updateProfile(account);
+	if(result > 0)
+	return new ResponseEntity<>(result,HttpStatus.OK);
+	return new ResponseEntity<Integer>(result,HttpStatus.NOT_ACCEPTABLE);
+}
+
+//verify student
+@PutMapping("/verify-student")
+public ResponseEntity<Integer> verifyStudent(@RequestParam("userName") String userName,@RequestParam("email") String email){
+	Integer result = service.verifyStudent(userName, email);
+	if(result > 0)
+	return new ResponseEntity<>(result,HttpStatus.OK);
+	return new ResponseEntity<Integer>(result,HttpStatus.NOT_ACCEPTABLE);
+}
 }

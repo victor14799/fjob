@@ -63,9 +63,30 @@ public class AccountServiceImp implements AccountService{
 		return component.verifyAccount(otp);
 	}
 
+	//update balance
+	
 	@Override
 	public int updateBalance(String balance, String userName) {
 		return component.updateBalance(balance, userName);
+	}
+
+	//update profile 
+	
+	@Override
+	public int updateProfile(AccountDataset account) {
+		return component.updateProfile(account);
+	}
+
+//	@Override
+//	public int updatePassword(String password) {
+//		return component.updatePassword(password);
+//	}
+
+	
+	//verify student
+	@Override
+	public int verifyStudent(String userName, String email) {
+		return component.verifyStudent(userName, email);
 	}
 
 	
