@@ -98,4 +98,31 @@ public ResponseEntity<Integer> verifyStudent(@RequestParam("userName") String us
 	return new ResponseEntity<>(result,HttpStatus.OK);
 	return new ResponseEntity<Integer>(result,HttpStatus.NOT_ACCEPTABLE);
 }
+
+//get contact
+@GetMapping("/get-contact")
+public ResponseEntity<AccountDataset> getContact(@RequestParam("userName") String userName){
+	AccountDataset result = service.getContact(userName);
+	if(result != null )
+	return new ResponseEntity<>(result,HttpStatus.OK);
+	return new ResponseEntity<AccountDataset>(result,HttpStatus.BAD_REQUEST);
+}
+
+//get all infor
+@GetMapping("/get-all-infor")
+public ResponseEntity<AccountDataset> getAllInfor(@RequestParam("userName") String userName){
+	AccountDataset result = service.getAllInfor(userName);
+	if(result != null )
+	return new ResponseEntity<>(result,HttpStatus.OK);
+	return new ResponseEntity<AccountDataset>(result,HttpStatus.BAD_REQUEST);
+}
+
+//get infor for visiter
+@GetMapping("/get-infor-for-visiter")
+public ResponseEntity<AccountDataset> getInforForVisiter(@RequestParam("userName") String userName){
+	AccountDataset result = service.getInforForVisiter(userName);
+	if(result != null )
+	return new ResponseEntity<>(result,HttpStatus.OK);
+	return new ResponseEntity<AccountDataset>(result,HttpStatus.BAD_REQUEST);
+}
 }

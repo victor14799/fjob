@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Select;
 public interface OTPMapper {
 
     @Insert("INSERT INTO OTP " +
-            "(USERNAME, " +
+            "(USER_NAME, " +
             "EMAIL, " +
             "OTP, " +
             "INS_DATE) " +
@@ -27,11 +27,11 @@ public interface OTPMapper {
             "FROM OTP " +
             "WHERE " +
             "   OTP = #{otp} " +
-            "   AND USERNAME = #{userName}")
+            "   AND USER_NAME = #{userName}")
     OTPDataset getOTP(OTPDataset otpDataset);
 
     @Delete("DELETE FROM OTP  " +
             "WHERE OTP = #{otp}  " +
-            "AND USERNAME = #{userName} ")
+            "AND USER_NAME = #{userName} ")
     int deleteOTP(OTPDataset otpDataset);
 }

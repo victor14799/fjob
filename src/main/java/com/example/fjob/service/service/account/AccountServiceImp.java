@@ -89,6 +89,24 @@ public class AccountServiceImp implements AccountService{
 		return component.verifyStudent(userName, email);
 	}
 
+	//get contact
+	
+	@Override
+	public AccountDataset getContact(String userName) {
+		return component.getContact(userName);
+	}
+
+	@Override
+	public AccountDataset getAllInfor(String userName) {
+		return component.getAllInfor(userName);
+	}
+
+	@Override
+	public AccountDataset getInforForVisiter(String userName) {
+		
+		return component.getInforForVisiter(userName);
+	}
+
 	
 
 }

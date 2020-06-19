@@ -58,8 +58,8 @@ public interface AccountMapper {
 	("UPDATE account "
 			+ "SET DEL_FLG = '1',"
 			+ "UPD_DATE = clock_timestamp() "
-			+ "WHERE user_name = #{username}")
-	int disableAccount(@Param("username") String username);
+			+ "WHERE user_name = #{user_name}")
+	int disableAccount(@Param("user_name") String user_name);
 	
 	//RESET PASSWORD 
 	@Update ("UPDATE account "
@@ -136,4 +136,46 @@ public interface AccountMapper {
 			+ "UPD_DATE = clock_timestamp() "
 			+ "WHERE user_name = #{userName}")
 	int verifyStudent(@Param("userName") String userName);
+	
+	//GET CONTACT
+	
+	@Select("Select phone_no as phoneNo,"
+			+ "addr,"
+			+ "email "
+			+ "FROM account "
+			+ "WHERE user_name = #{userName}")
+	AccountDataset getContact(@Param("userName") String userName);
+	
+	//GET ALL INFOR 
+	//skill?
+	@Select("SELECT user_name as userName,"
+			+ "first_name as firstName,"
+			+ "last_name as lastName,"
+			+ "addr,"
+			+ "phone_no as phoneNo,"
+			+ "email,"
+			+ "img,"
+			+ "ranked,"
+			+ "is_student as isStudent,"
+			+ "role,"
+			+ "balance "
+			+ "FROM account "
+			+ "WHERE user_name = #{userName}")
+	AccountDataset getAllInfor(@Param("userName") String userName);
+	
+	//GET INFOR FOR VISITER
+	//skill?
+	@Select("SELECT user_name as userName,"
+			+ "first_name as firstName,"
+			+ "last_name as lastName,"
+			+ "img,"
+			+ "ranked,"
+			+ "is_student as isStudent,"
+			+ "role,"
+			+ "balance "
+			+ "FROM account "
+			+ "WHERE user_name = #{userName}")
+	AccountDataset getInforForVisiter(@Param("userName") String userName);
+	
+	
 }

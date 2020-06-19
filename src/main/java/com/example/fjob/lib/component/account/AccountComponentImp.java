@@ -91,6 +91,7 @@ public int updateProfile(AccountDataset account) {
 //	return mapper.updatePassword(password);
 //}
 
+
 //verify student
 
 @Override
@@ -101,4 +102,25 @@ public int verifyStudent(String userName, String email) {
 	}
 	return 0;
 }
+
+//get contact
+
+@Override
+public AccountDataset getContact(String userName) {
+	AccountDataset account = mapper.getContact(userName);
+	System.out.println(account.getPhoneNo() + "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSs");
+	return mapper.getContact(userName);
+}
+
+@Override
+public AccountDataset getAllInfor(String userName) {
+	return mapper.getAllInfor(userName);
+}
+
+@Override
+public AccountDataset getInforForVisiter(String userName) {
+	return mapper.getInforForVisiter(userName);
+}
+
+//get all infor
 }

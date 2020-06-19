@@ -47,4 +47,17 @@ int updateProfile(AccountDataset account);
 // verify student
 
 int verifyStudent(String userName,String email);
+
+//get contact
+
+AccountDataset getContact(String userName);
+
+//get all 
+
+AccountDataset getAllInfor(String userName);
+
+//get infor for visited 
+
+AccountDataset getInforForVisiter(String userName);
+
 }
