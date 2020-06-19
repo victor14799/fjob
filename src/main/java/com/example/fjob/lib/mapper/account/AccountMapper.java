@@ -172,7 +172,6 @@ public interface AccountMapper {
 			+ "ranked,"
 			+ "is_student as isStudent,"
 			+ "role,"
-			+ "balance "
 			+ "FROM account "
 			+ "WHERE user_name = #{userName}")
 	AccountDataset getInforForVisiter(@Param("userName") String userName);
