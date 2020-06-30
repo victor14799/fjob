@@ -1,5 +1,7 @@
 package com.example.fjob.lib.dataset.post;
 
+import com.example.fjob.common.CommonUtils;
+
 import java.util.Date;
 
 public class PostOverviewDataset {
@@ -52,7 +54,7 @@ public class PostOverviewDataset {
     }
 
     public String getBudget() {
-        return budget;
+        return CommonUtils.formatMoney(this.budget);
     }
 
     public void setBudget(String budget) {

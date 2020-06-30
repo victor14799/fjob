@@ -1,9 +1,12 @@
 package com.example.fjob.service.controller.bid;
 
 import com.example.fjob.lib.dataset.bid.BidParamDataset;
+import com.example.fjob.lib.dataset.bid.CommentDataset;
 import com.example.fjob.service.service.bid.BidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("fjob/v1/bid")
@@ -13,6 +16,11 @@ public class BidController {
     @Autowired
     public BidController(BidService service) {
         this.service = service;
+    }
+
+    @GetMapping("/{postId}")
+    public List<CommentDataset> getComment(@PathVariable("postId") String postId){
+        return service.getComment(postId);
     }
 
     @PostMapping("/{postId}")

@@ -65,7 +65,21 @@ public class PostComponentImp implements PostComponent {
      */
     @Override
     public PostDetailDataset selDetailPost(String postId) {
-        return mapper.selPostDetail(postId);
+        PostDetailDataset results = mapper.selPostDetail(postId);
+        List<String> tagList = new ArrayList<>();
+        if (results.getTag() != null) {
+            if (results.getTag().trim() != "") {
+                String[] tags = results.getTag().split(",");
+
+                for (int i = 0; i < tags.length; i++) {
+                    tagList.add(tags[i].trim());
+                }
+
+            }
+
+        }
+        results.setSkillLists(tagList);
+        return results;
     }
 
     /**

@@ -1,6 +1,9 @@
 package com.example.fjob.lib.dataset.post;
 
+import com.example.fjob.common.CommonUtils;
+
 import java.util.Date;
+import java.util.List;
 
 public class PostDetailDataset {
 
@@ -27,6 +30,26 @@ public class PostDetailDataset {
     private Date insDate;
 
     private Date updDate;
+
+    private String imgUrl;
+
+    private List<String> skillLists;
+
+    public List<String> getSkillLists() {
+        return skillLists;
+    }
+
+    public void setSkillLists(List<String> skillLists) {
+        this.skillLists = skillLists;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 
     public String getPostId() {
         return postId;
@@ -61,7 +84,7 @@ public class PostDetailDataset {
     }
 
     public String getBudget() {
-        return budget;
+        return CommonUtils.formatMoney(this.budget);
     }
 
     public void setBudget(String budget) {

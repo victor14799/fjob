@@ -2,8 +2,11 @@ package com.example.fjob.service.service.bid;
 
 import com.example.fjob.lib.component.bid.BidComponent;
 import com.example.fjob.lib.dataset.bid.BidParamDataset;
+import com.example.fjob.lib.dataset.bid.CommentDataset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class BidServiceImp implements BidService{
@@ -13,6 +16,11 @@ public class BidServiceImp implements BidService{
     @Autowired
     public BidServiceImp(BidComponent component) {
         this.component = component;
+    }
+
+    @Override
+    public List<CommentDataset> getComment(String postId) {
+        return component.selComment(postId);
     }
 
     @Override

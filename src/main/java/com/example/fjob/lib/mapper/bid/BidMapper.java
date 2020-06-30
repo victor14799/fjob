@@ -1,7 +1,10 @@
 package com.example.fjob.lib.mapper.bid;
 
 import com.example.fjob.lib.dataset.bid.BidParamDataset;
+import com.example.fjob.lib.dataset.bid.CommentDataset;
 import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 @Mapper
 public interface BidMapper {
@@ -47,4 +50,17 @@ public interface BidMapper {
             "    BID_USER = #{bidUser} " +
             "    AND POST_ID = #{postId} ")
     int deleteBid(BidParamDataset paramDataset);
+    
+    @Select("SELECT  " +
+            " T0.BID_USER AS bidUser,  " +
+            " T1.LAST_NAME || ' ' || T1.FIRST_NAME AS fullName, " +
+            " COALESCE(T1.IMG,' ') AS img, " +
+            " T0.PRICE AS price, " +
+            " T0.DUE_DATE AS dueDate, " +
+            " T0.INS_DATE AS insDate" +
+            " FROM BID T0 " +
+            " INNER JOIN ACCOUNT T1 " +
+            " ON T0.BID_USER  = T1.USER_NAME  " +
+            " WHERE POST_ID = #{postId} ")
+    List<CommentDataset> selComment(@Param("postId") String postId);
 }

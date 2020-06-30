@@ -1,8 +1,10 @@
 package com.example.fjob.common;
 
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
 public class CommonUtils {
@@ -15,7 +17,7 @@ public class CommonUtils {
 
     private static final int OTP_LENGTH = 6; // random OTP with 6 numbers
 
-    public static String randomID(){
+    public static String randomID() {
         Random random = new Random();
 
         String generatedString = random.ints(NUMERAL_BINARY, LETTER_BINARY + 1)
@@ -27,21 +29,27 @@ public class CommonUtils {
         return generatedString;
     }
 
-    public static String convertDateToString(String pattern, Date date){
+    public static String convertDateToString(String pattern, Date date) {
         DateFormat df = new SimpleDateFormat(pattern);
-        String convertedDate  = df.format(date);
+        String convertedDate = df.format(date);
         return convertedDate;
     }
 
-    public static String generateOTP(){
+    public static String generateOTP() {
         Random obj = new Random();
         char[] otp = new char[OTP_LENGTH];
-        String results ="";
-        for (int i=0; i<OTP_LENGTH; i++)
-        {
-            otp[i]= (char)(obj.nextInt(10)+48);
+        String results = "";
+        for (int i = 0; i < OTP_LENGTH; i++) {
+            otp[i] = (char) (obj.nextInt(10) + 48);
             results += otp[i];
         }
         return results;
+    }
+
+    public static String formatMoney(String money) {
+        double amount = Double.parseDouble(money);
+        Locale locale = new Locale("vi", "VN");
+        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
+        return currencyFormatter.format(amount);
     }
 }

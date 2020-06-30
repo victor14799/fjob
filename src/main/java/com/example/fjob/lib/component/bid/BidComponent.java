@@ -1,10 +1,22 @@
 package com.example.fjob.lib.component.bid;
 
 import com.example.fjob.lib.dataset.bid.BidParamDataset;
+import com.example.fjob.lib.dataset.bid.CommentDataset;
+
+import java.util.List;
 
 public interface BidComponent {
     /**
+     * selComment
+     *
+     * @param postId
+     * @return
+     */
+    List<CommentDataset> selComment(String postId);
+
+    /**
      * insBid
+     *
      * @param paramDataset
      * @return
      */
@@ -12,6 +24,7 @@ public interface BidComponent {
 
     /**
      * updateBid
+     *
      * @param paramDataset
      * @return
      */
@@ -19,6 +32,7 @@ public interface BidComponent {
 
     /**
      * delBid
+     *
      * @param paramDataset
      * @return
      */

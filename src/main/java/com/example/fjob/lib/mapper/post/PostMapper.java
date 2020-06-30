@@ -52,22 +52,23 @@ public interface PostMapper {
             "   T0.INS_DATE ")
     List<PostOverviewDataset> selOverviewPost();
 
-    @Select("SELECT    " +
-            "T0.POST_ID AS postId,    " +
-            "T0.USER_NAME AS username, " +
-            "T1.LAST_NAME || ' ' || T1.FIRST_NAME  AS fullName,   " +
-            "T0.TITLE AS title,    " +
-            "T0.BUDGET AS budget," +
-            "T0.CONTENT AS content," +
-            "T0.TAG AS tag," +
-            "T0.STATUS AS status,    " +
-            "T0.START_DATE AS startDate,    " +
-            "T0.END_DATE AS endDate,    " +
-            "T0.INS_DATE AS insDate,    " +
-            "T0.UPD_DATE AS updDate  " +
-            "FROM POST T0 " +
-            "INNER JOIN ACCOUNT T1 " +
-            "ON T0.USER_NAME = T1.USER_NAME " +
+    @Select("SELECT " +
+            "T0.POST_ID AS postId, " +
+            "T0.USER_NAME AS username,  " +
+            "T1.LAST_NAME || ' ' || T1.FIRST_NAME  AS fullName,    " +
+            "T0.TITLE AS title, " +
+            "T1.img AS imgUrl,  " +
+            "T0.BUDGET AS budget, " +
+            "T0.CONTENT AS content, " +
+            "COALESCE(T0.TAG,'') AS tag, " +
+            "T0.STATUS AS status, " +
+            "T0.START_DATE AS startDate, " +
+            "T0.END_DATE AS endDate, " +
+            "T0.INS_DATE AS insDate, " +
+            "T0.UPD_DATE AS updDate   " +
+            "FROM POST T0  " +
+            "INNER JOIN ACCOUNT T1  " +
+            "ON T0.USER_NAME = T1.USER_NAME  " +
             "WHERE POST_ID = #{postId}")
     PostDetailDataset selPostDetail(@Param("postId") String postId);
 
@@ -80,7 +81,7 @@ public interface PostMapper {
             "FROM POST " +
             "WHERE POST_ID = #{postId}")
     int delPost(@Param("postId") String postId);
-    
+
     @Update("UPDATE POST    " +
             "SET " +
             "TITLE = #{title},    " +
