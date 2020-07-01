@@ -1,6 +1,7 @@
 package com.example.fjob.service.service.skill;
 
 import com.example.fjob.lib.component.skill.SkillComponent;
+import com.example.fjob.lib.dataset.skill.SkillDataset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class SkillServiceImp implements SkillService {
     }
 
     @Override
-    public List<String> getSkillCategory() {
+    public List<SkillDataset> getSkillCategory() {
         return component.getListSkill();
     }
 }

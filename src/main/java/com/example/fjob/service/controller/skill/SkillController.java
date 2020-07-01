@@ -1,5 +1,6 @@
 package com.example.fjob.service.controller.skill;
 
+import com.example.fjob.lib.dataset.skill.SkillDataset;
 import com.example.fjob.service.service.skill.SkillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,7 @@ public class SkillController {
     }
 
     @GetMapping("")
-    public List<String> selSkillCategory(){
+    public List<SkillDataset> selSkillCategory(){
         return service.getSkillCategory();
     }
 }
