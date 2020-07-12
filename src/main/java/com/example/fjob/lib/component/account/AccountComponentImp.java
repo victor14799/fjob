@@ -11,78 +11,78 @@ import com.example.fjob.lib.dataset.otp.OTPDataset;
 import com.example.fjob.lib.mapper.account.AccountMapper;
 
 @Component
-public class AccountComponentImp implements AccountComponent{
-	
-AccountMapper mapper;
-OTPComponent otpComponent;
+public class AccountComponentImp implements AccountComponent {
 
-@Autowired
-public AccountComponentImp(AccountMapper mapper,OTPComponent otpComponent) {
-	this.mapper = mapper;
-	this.otpComponent = otpComponent;
-}
+    AccountMapper mapper;
+    OTPComponent otpComponent;
+
+    @Autowired
+    public AccountComponentImp(AccountMapper mapper, OTPComponent otpComponent) {
+        this.mapper = mapper;
+        this.otpComponent = otpComponent;
+    }
 
 // Insert New Account
 
-@Override
-public int insertNewAccount(AccountDataset account) {
-	
-	return mapper.insertNewAccount(account);
-}
+    @Override
+    public int insertNewAccount(AccountDataset account) {
+
+        return mapper.insertNewAccount(account);
+    }
 
 //Disable Account
 
-@Override
-public int disableAccount(String username) {
-	return mapper.disableAccount( username);
-}
+    @Override
+    public int disableAccount(String username) {
+        return mapper.disableAccount(username);
+    }
 
 //reset password
 
-@Override
-public int resetPassword(AccountDataset account) {
-int result = mapper.resetPassword(account);
-	return result;
-}
+    @Override
+    public int resetPassword(AccountDataset account) {
+        int result = mapper.resetPassword(account);
+        return result;
+    }
 
 //get all user
 
-@Override
-public List<AccountDataset> getAllUser() {
-	return mapper.getAllUser();
-}
+    @Override
+    public List<AccountDataset> getAllUser() {
+        return mapper.getAllUser();
+    }
 
 // count number of user
 
-@Override
-public int countNumberUser() {
-	return mapper.countNumberUser();
-}
+    @Override
+    public int countNumberUser() {
+        return mapper.countNumberUser();
+    }
 
 //verify account
 
-@Override
-public int verifyAccount(OTPDataset otp) {
-	boolean result = otpComponent.validateOTP(otp);
-	 if(result) {
-		 return mapper.verifyAccount(otp);
-	 }
-	 return 0;
-}
+    @Override
+    public int verifyAccount(OTPDataset otp) {
+        boolean result = otpComponent.validateOTP(otp);
+        if (result) {
+            return mapper.verifyAccount(otp);
+        }
+        return 0;
+    }
 
 //update balance
 
-@Override
-public int updateBalance(String balance, String userName) {
-return mapper.updateBalance(balance, userName);
-}
+    @Override
+    public int updateBalance(String balance, String userName) {
+        return mapper.updateBalance(balance, userName);
+    }
 
 //update profile
 
-@Override
-public int updateProfile(AccountDataset account) {
-	return mapper.updateProfile(account);
-}
+    @Override
+    public int updateProfile(AccountDataset account) {
+        return mapper.updateProfile(account);
+    }
 
 ////update password
 //
@@ -94,33 +94,38 @@ public int updateProfile(AccountDataset account) {
 
 //verify student
 
-@Override
-public int verifyStudent(String userName, String email) {
-	boolean result = email.endsWith("fpt.edu.vn");
-	if(result) {
-		return mapper.verifyStudent(userName);
-	}
-	return 0;
-}
+    @Override
+    public int verifyStudent(String userName, String email) {
+        boolean result = email.endsWith("fpt.edu.vn");
+        if (result) {
+            return mapper.verifyStudent(userName);
+        }
+        return 0;
+    }
 
 //get contact
 
-@Override
-public AccountDataset getContact(String userName) {
-	AccountDataset account = mapper.getContact(userName);
-	System.out.println(account.getPhoneNo() + "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSs");
-	return mapper.getContact(userName);
-}
+    @Override
+    public AccountDataset getContact(String userName) {
+        AccountDataset account = mapper.getContact(userName);
+        System.out.println(account.getPhoneNo() + "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSs");
+        return mapper.getContact(userName);
+    }
 
-@Override
-public AccountDataset getAllInfor(String userName) {
-	return mapper.getAllInfor(userName);
-}
+    @Override
+    public AccountDataset getAllInfor(String userName) {
+        return mapper.getAllInfor(userName);
+    }
 
-@Override
-public AccountDataset getInforForVisiter(String userName) {
-	return mapper.getInforForVisiter(userName);
-}
+    @Override
+    public AccountDataset getInforForVisiter(String userName) {
+        return mapper.getInforForVisiter(userName);
+    }
+
+    @Override
+    public boolean isExistedEmail(String email) {
+        return mapper.isAccountEmailExisted(email) > 0;
+    }
 
 //get all infor
 }

@@ -176,6 +176,11 @@ public interface AccountMapper {
 			+ "FROM account "
 			+ "WHERE user_name = #{userName}")
 	AccountDataset getInforForVisiter(@Param("userName") String userName);
-	
-	
+
+	@Select("SELECT COUNT(0) " +
+			"FROM ACCOUNT " +
+			"WHERE EMAIL = #{email} " +
+			"AND IS_VERIFY = '1'")
+	int isAccountEmailExisted(@Param("email")String email);
+
 }

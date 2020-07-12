@@ -59,4 +59,6 @@ public interface AccountComponent {
  //get infor for visited 
  
  AccountDataset getInforForVisiter(String userName);
+
+ boolean isExistedEmail(String email);
 }

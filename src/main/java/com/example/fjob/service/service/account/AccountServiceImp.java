@@ -107,6 +107,10 @@ public class AccountServiceImp implements AccountService{
 		return component.getInforForVisiter(userName);
 	}
 
-	
+	@Override
+	public boolean isAccountEmailExist(String email) {
+		return component.isExistedEmail(email);
+	}
+
 
 }

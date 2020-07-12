@@ -6,39 +6,39 @@ import com.example.fjob.lib.dataset.account.AccountDataset;
 import com.example.fjob.lib.dataset.otp.OTPDataset;
 
 public interface AccountService {
-	 
-	//insert new account
-	
-int insertNewAccount(AccountDataset account);
+
+    //insert new account
+
+    int insertNewAccount(AccountDataset account);
 
 
 //disable account
 
-int disableAccount(String username);
+    int disableAccount(String username);
 
 //reset password
 
-int resetPassword(AccountDataset account);
+    int resetPassword(AccountDataset account);
 
 //get all user
 
-List<AccountDataset> getAllUser();
+    List<AccountDataset> getAllUser();
 
 //count number of user
 
-int countNumberUser();
+    int countNumberUser();
 
 //verify account
 
-int verifyAccount(OTPDataset otp);
+    int verifyAccount(OTPDataset otp);
 
 //update balance
 
-int updateBalance(String balance,String userName);
+    int updateBalance(String balance, String userName);
 
 //update profile
 
-int updateProfile(AccountDataset account);
+    int updateProfile(AccountDataset account);
 
 ////update password
 //
@@ -46,18 +46,21 @@ int updateProfile(AccountDataset account);
 
 // verify student
 
-int verifyStudent(String userName,String email);
+    int verifyStudent(String userName, String email);
 
 //get contact
 
-AccountDataset getContact(String userName);
+    AccountDataset getContact(String userName);
 
 //get all 
 
-AccountDataset getAllInfor(String userName);
+    AccountDataset getAllInfor(String userName);
 
 //get infor for visited 
 
-AccountDataset getInforForVisiter(String userName);
+    AccountDataset getInforForVisiter(String userName);
+
+    //check email is exist or not
+    boolean isAccountEmailExist(String email);
 
 }
