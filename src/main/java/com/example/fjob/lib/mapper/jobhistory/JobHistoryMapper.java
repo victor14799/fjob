@@ -11,7 +11,7 @@ public interface JobHistoryMapper {
 
     @Select("SELECT " +
             "  T1.TITLE AS title,  " +
-            "  T1.USERNAME AS userName,  " +
+            "  T1.USER_NAME AS userName,  " +
             "  T0.PRICE  AS price,  " +
             "  T0.FEEDBACK AS feedback,  " +
             "  T0.COMMENT AS comment,  " +
