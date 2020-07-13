@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("fjob/v1")
+@RequestMapping("fjob/v1/jobs-history")
 @Validated
 public class JobHistoryController {
     private JobHistoryService service;
@@ -20,7 +20,7 @@ public class JobHistoryController {
         this.service = service;
     }
 
-    @GetMapping("/jobs-history/{bidUser}")
+    @GetMapping("/{bidUser}")
     List<JobHistoryDataset> selJobHistory(@PathVariable("bidUser") String bidUser){
         return service.getJobHistory(bidUser);
     }

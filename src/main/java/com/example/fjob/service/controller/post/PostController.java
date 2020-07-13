@@ -20,7 +20,7 @@ public class PostController {
         this.service = service;
     }
 
-    @PostMapping("/createNewPost")
+    @PostMapping("/newPost")
     public boolean insPost(@RequestBody  PostParamDataset paramDataset){
         return service.insPost(paramDataset);
     }
@@ -40,12 +40,12 @@ public class PostController {
         return service.countPostByStatus(status);
     }
 
-    @DeleteMapping("/{postId}/del")
+    @DeleteMapping("/{postId}")
     public boolean delPost(@PathVariable("postId") String postId){
         return service.delPost(postId);
     }
 
-    @PutMapping("/{postId}/upd")
+    @PutMapping("/{postId}")
     public boolean updPost( @PathVariable("postId") String postId, @RequestBody  PostParamDataset paramDataset){
         return service.updPost(paramDataset);
     }

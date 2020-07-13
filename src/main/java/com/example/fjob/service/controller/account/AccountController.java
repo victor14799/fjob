@@ -23,7 +23,7 @@ public class AccountController {
 
 //insert new account
 
-    @PostMapping("/create-account")
+    @PostMapping("/create")
     public ResponseEntity<HttpStatus> insertNewAccount(
             @RequestBody AccountDataset account) {
         if (service.insertNewAccount(account) > 0) {
@@ -33,7 +33,7 @@ public class AccountController {
     }
 
     //disable account
-    @PutMapping("/disable-account")
+    @PutMapping("/disable")
     public ResponseEntity<HttpStatus> disableAccount(@RequestParam("username") String username) {
         service.disableAccount(username);
         return new ResponseEntity<HttpStatus>(HttpStatus.OK);
@@ -49,19 +49,19 @@ public class AccountController {
     }
 
     //get all user
-    @GetMapping("/get-all-user")
+    @GetMapping("/")
     public ResponseEntity<List<AccountDataset>> getAllUser() {
         return new ResponseEntity<>(service.getAllUser(), HttpStatus.OK);
     }
 
     //count no user
-    @GetMapping("/count-user")
+    @GetMapping("/count")
     public ResponseEntity<Integer> countNumberUser() {
         return new ResponseEntity<>(service.countNumberUser(), HttpStatus.OK);
     }
 
     //verify account
-    @PutMapping("/verify-account")
+    @PutMapping("/verify")
     public ResponseEntity<Integer> verifyAccount(@RequestBody OTPDataset otp) {
         Integer result = service.verifyAccount(otp);
         if (result > 0)
@@ -97,7 +97,7 @@ public class AccountController {
     }
 
     //get contact
-    @GetMapping("/get-contact")
+    @GetMapping("/contact")
     public ResponseEntity<AccountDataset> getContact(@RequestParam("userName") String userName) {
         AccountDataset result = service.getContact(userName);
         if (result != null)
@@ -106,7 +106,7 @@ public class AccountController {
     }
 
     //get all infor
-    @GetMapping("/get-all-infor")
+    @GetMapping("/all-infor")
     public ResponseEntity<AccountDataset> getAllInfor(@RequestParam("userName") String userName) {
         AccountDataset result = service.getAllInfor(userName);
         if (result != null)
@@ -115,7 +115,7 @@ public class AccountController {
     }
 
     //get infor for visiter
-    @GetMapping("/get-infor-for-visiter")
+    @GetMapping("/infor-visiter")
     public ResponseEntity<AccountDataset> getInforForVisiter(@RequestParam("userName") String userName) {
         AccountDataset result = service.getInforForVisiter(userName);
         if (result != null)
