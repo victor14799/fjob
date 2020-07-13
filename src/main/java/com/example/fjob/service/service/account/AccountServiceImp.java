@@ -2,6 +2,7 @@ package com.example.fjob.service.service.account;
 
 import java.util.List;
 
+import com.example.fjob.lib.dataset.account.AccountLoginDataset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -110,6 +111,11 @@ public class AccountServiceImp implements AccountService{
 	@Override
 	public boolean isAccountEmailExist(String email) {
 		return component.isExistedEmail(email);
+	}
+
+	@Override
+	public AccountLoginDataset checkLogin(String userName, String password) {
+		return component.checkLogin(userName, password);
 	}
 
 

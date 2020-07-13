@@ -2,6 +2,8 @@ package com.example.fjob.service.controller.account;
 
 import java.util.List;
 
+import com.example.fjob.lib.dataset.account.AccountLoginDataset;
+import com.example.fjob.lib.dataset.account.LoginAccountRequestDataset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -124,7 +126,15 @@ public class AccountController {
     }
 
     @GetMapping("/isAccountExisted/{email}")
-    public boolean checkAccountEmailExisted(@PathVariable("email") String email){
+    public boolean checkAccountEmailExisted(@PathVariable("email") String email) {
         return service.isAccountEmailExist(email);
+    }
+
+    @PostMapping("/login")
+    public AccountLoginDataset checkLogin(@RequestBody LoginAccountRequestDataset requestParam) {
+        String userName = requestParam.getUserName();
+        String password = requestParam.getPassword();
+
+        return service.checkLogin(userName, password);
     }
 }

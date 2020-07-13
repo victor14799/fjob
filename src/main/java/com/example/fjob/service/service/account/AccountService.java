@@ -3,6 +3,7 @@ package com.example.fjob.service.service.account;
 import java.util.List;
 
 import com.example.fjob.lib.dataset.account.AccountDataset;
+import com.example.fjob.lib.dataset.account.AccountLoginDataset;
 import com.example.fjob.lib.dataset.otp.OTPDataset;
 
 public interface AccountService {
@@ -62,5 +63,7 @@ public interface AccountService {
 
     //check email is exist or not
     boolean isAccountEmailExist(String email);
+
+    AccountLoginDataset checkLogin(String userName, String password);
 
 }

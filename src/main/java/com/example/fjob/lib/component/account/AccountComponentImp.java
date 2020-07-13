@@ -2,6 +2,7 @@ package com.example.fjob.lib.component.account;
 
 import java.util.List;
 
+import com.example.fjob.lib.dataset.account.AccountLoginDataset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -112,6 +113,7 @@ public class AccountComponentImp implements AccountComponent {
         return mapper.getContact(userName);
     }
 
+    //get all infor
     @Override
     public AccountDataset getAllInfor(String userName) {
         return mapper.getAllInfor(userName);
@@ -127,5 +129,10 @@ public class AccountComponentImp implements AccountComponent {
         return mapper.isAccountEmailExisted(email) > 0;
     }
 
-//get all infor
+    @Override
+    public AccountLoginDataset checkLogin(String userName, String password) {
+        return mapper.login(userName, password);
+    }
+
+
 }

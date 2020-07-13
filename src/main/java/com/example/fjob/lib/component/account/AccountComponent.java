@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.fjob.lib.component.otp.OTPComponent;
 import com.example.fjob.lib.dataset.account.AccountDataset;
+import com.example.fjob.lib.dataset.account.AccountLoginDataset;
 import com.example.fjob.lib.dataset.otp.OTPDataset;
 
 public interface AccountComponent {
@@ -61,4 +62,6 @@ public interface AccountComponent {
  AccountDataset getInforForVisiter(String userName);
 
  boolean isExistedEmail(String email);
+
+ AccountLoginDataset checkLogin(String userName, String password);
 }

@@ -2,6 +2,7 @@ package com.example.fjob.lib.mapper.account;
 
 import java.util.List;
 
+import com.example.fjob.lib.dataset.account.AccountLoginDataset;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -183,4 +184,14 @@ public interface AccountMapper {
 			"AND IS_VERIFY = '1'")
 	int isAccountEmailExisted(@Param("email")String email);
 
+	@Select("SELECT USER_NAME AS userName,  " +
+			"FIRST_NAME AS firstName,  " +
+			"LAST_NAME AS lastName," +
+			"EMAIL AS email,  " +
+			"IMG AS img," +
+			"BALANCE AS balance " +
+			"FROM ACCOUNT  " +
+			"WHERE USER_NAME  = #{userName} " +
+			"AND PASSWORD =#{password}")
+	AccountLoginDataset login(@Param("userName") String userName, @Param("password") String password);
 }
