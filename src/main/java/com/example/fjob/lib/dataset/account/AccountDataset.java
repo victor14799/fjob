@@ -14,6 +14,15 @@ public class AccountDataset {
 	private String isVerify;
 	private String role;
 	private String balance;
+	private String gender;
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 
 	public String getUserName() {
 		return userName;
