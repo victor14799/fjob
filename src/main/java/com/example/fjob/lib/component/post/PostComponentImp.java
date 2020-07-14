@@ -34,14 +34,14 @@ public class PostComponentImp implements PostComponent {
      */
     @Override
     public boolean insPost(PostParamDataset paramDataset) {
-        if (paramDataset.getPostId() == null) {
+        if (paramDataset.getPostId() == null || paramDataset.getPostId().isEmpty()) {
             String postId = CommonUtils.randomID();
             if (postId.isEmpty()) {
                 return false;
             }
             paramDataset.setPostId(postId);
         }
-        if (paramDataset.getStatus() == null) {
+        if (paramDataset.getStatus() == null || paramDataset.getPostId().isEmpty()) {
             paramDataset.setStatus(STATUS_OPEN_STR);
         }
         return mapper.insPost(paramDataset) > 0;
