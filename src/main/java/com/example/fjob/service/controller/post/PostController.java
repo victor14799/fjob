@@ -11,7 +11,7 @@ import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
-@RequestMapping("fjob/v1/post")
+@RequestMapping(value = "fjob/v1/post")
 public class PostController {
     private PostService service;
 
@@ -20,7 +20,7 @@ public class PostController {
         this.service = service;
     }
 
-    @PostMapping("/newPost")
+    @RequestMapping(value = "/createNewPost", method = RequestMethod.POST)
     public boolean insPost(@RequestBody  PostParamDataset paramDataset){
         return service.insPost(paramDataset);
     }
@@ -40,12 +40,12 @@ public class PostController {
         return service.countPostByStatus(status);
     }
 
-    @DeleteMapping("/{postId}")
+    @DeleteMapping("/{postId}/del")
     public boolean delPost(@PathVariable("postId") String postId){
         return service.delPost(postId);
     }
 
-    @PutMapping("/{postId}")
+    @PutMapping("/{postId}/upd")
     public boolean updPost( @PathVariable("postId") String postId, @RequestBody  PostParamDataset paramDataset){
         return service.updPost(paramDataset);
     }
