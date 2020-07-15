@@ -203,7 +203,7 @@ public interface AccountMapper {
 	
 	
 	// Delete Account 
-	@Delete("DELETE account WHERE user_name = #{userName}")
+	@Delete("DELETE FROM account WHERE user_name = #{userName}")
 	int deleteAccount(@Param("userName") String userName);
 
 }
