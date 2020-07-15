@@ -132,7 +132,7 @@ public class PostComponentImp implements PostComponent {
             results = listAllPost
                     .stream()
                     .filter(index ->
-                            index.getTitle().contains(title))
+                            index.getTitle().toLowerCase().contains(title.trim().toLowerCase()))
                     .collect(Collectors.toList());
             if (results != null && !results.isEmpty()) {
                 if (status != null && !status.isEmpty()) {
@@ -142,10 +142,22 @@ public class PostComponentImp implements PostComponent {
                             .collect(Collectors.toList());
                 }
                 if (tag != null && !tag.isEmpty()) {
-                    results = results
-                            .stream()
-                            .filter((index -> index.getTag() != null && index.getTag().contains(tag)))
-                            .collect(Collectors.toList());
+                	if (tag.contains(",")) {
+                		String[] tags = tag.split(",");
+                		for (String value : tags) {
+                			results = results
+                                    .stream()
+                                    .filter((index -> index.getTag() != null && index.getTag().contains(value.trim())))
+                                    .collect(Collectors.toList());
+                		}
+                	} else {
+                		results = results
+                                .stream()
+                                .filter((index -> index.getTag() != null && index.getTag().contains(tag)))
+                                .collect(Collectors.toList());
+                	}
+                	
+                    
                 }
             }
         }
