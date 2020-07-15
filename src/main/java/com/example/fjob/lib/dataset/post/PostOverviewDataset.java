@@ -20,8 +20,20 @@ public class PostOverviewDataset {
     private String status;
 
     private Date insDate;
+    
+    private String userName;
+    
+    
 
-    public String getPostId() {
+    public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPostId() {
         return postId;
     }
 
