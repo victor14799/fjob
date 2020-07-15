@@ -37,7 +37,8 @@ public interface PostMapper {
 
     @Select("SELECT " +
             "T0.POST_ID AS postID,   " +
-            "T1.LAST_NAME || ' ' || T1.FIRST_NAME  AS fullName,   " +
+            "T1.LAST_NAME || ' ' || T1.FIRST_NAME  AS fullName,   "
+            + "T0.USER_NAME AS userName," +
             "T0.TITLE AS title,   " +
             "T0.CONTENT AS content,  " +
             "T0.BUDGET AS budget,   " +
