@@ -64,4 +64,10 @@ public interface AccountComponent {
  boolean isExistedEmail(String email);
 
  AccountLoginDataset checkLogin(String userName, String password);
+
+ 
+ //delete account 
+ 
+ int deleteAccount(String userName);
+
 }

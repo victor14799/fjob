@@ -66,4 +66,8 @@ public interface AccountService {
 
     AccountLoginDataset checkLogin(String userName, String password);
 
+//int delete account
+
+int deleteAccount(String userName);
+
 }

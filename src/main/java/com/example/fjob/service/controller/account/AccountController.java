@@ -8,7 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import com.example.fjob.lib.dataset.account.AccountDataset;
 import com.example.fjob.lib.dataset.otp.OTPDataset;
 import com.example.fjob.service.service.account.AccountService;
@@ -116,15 +123,6 @@ public class AccountController {
         return new ResponseEntity<AccountDataset>(result, HttpStatus.BAD_REQUEST);
     }
 
-    //get infor for visiter
-    @GetMapping("/infor-visiter")
-    public ResponseEntity<AccountDataset> getInforForVisiter(@RequestParam("userName") String userName) {
-        AccountDataset result = service.getInforForVisiter(userName);
-        if (result != null)
-            return new ResponseEntity<>(result, HttpStatus.OK);
-        return new ResponseEntity<AccountDataset>(result, HttpStatus.BAD_REQUEST);
-    }
-
     @GetMapping("/isAccountExisted/{email}")
     public boolean checkAccountEmailExisted(@PathVariable("email") String email) {
         return service.isAccountEmailExist(email);
@@ -137,4 +135,14 @@ public class AccountController {
 
         return service.checkLogin(userName, password);
     }
+
+//delete account
+
+@DeleteMapping("/delete-account")
+public ResponseEntity<Integer> deleteAccount(@RequestParam("userName") String userName){
+	Integer result = service.deleteAccount(userName);
+	if(result > 0)
+	return new ResponseEntity<>(result,HttpStatus.OK);
+	return new ResponseEntity<Integer>(result,HttpStatus.INTERNAL_SERVER_ERROR);
+}
 }

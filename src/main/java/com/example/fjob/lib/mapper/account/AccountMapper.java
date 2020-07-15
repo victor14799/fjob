@@ -1,8 +1,7 @@
 package com.example.fjob.lib.mapper.account;
-
 import java.util.List;
-
 import com.example.fjob.lib.dataset.account.AccountLoginDataset;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -133,52 +132,8 @@ public interface AccountMapper {
 //			+ "WHERE user_name = #{userName}")
 //	int updatePassword(@Param("password") String password);
 
-    //VERIFY STUDENT
-    @Update("UPDATE account "
-            + "SET is_student = '1',"
-            + "UPD_DATE = clock_timestamp() "
-            + "WHERE user_name = #{userName}")
-    int verifyStudent(@Param("userName") String userName);
-
+   
     //GET CONTACT
-
-    @Select("Select phone_no as phoneNo,"
-            + "addr,"
-            + "email "
-            + "FROM account "
-            + "WHERE user_name = #{userName}")
-    AccountDataset getContact(@Param("userName") String userName);
-
-    //GET ALL INFOR
-    //skill?
-    @Select("SELECT user_name as userName,"
-            + "first_name as firstName,"
-            + "last_name as lastName,"
-            + "addr,"
-            + "phone_no as phoneNo,"
-            + "email,"
-            + "img,"
-            + "ranked,"
-            + "is_student as isStudent,"
-            + "role,"
-            + "balance "
-            + "FROM account "
-            + "WHERE user_name = #{userName}")
-    AccountDataset getAllInfor(@Param("userName") String userName);
-
-    //GET INFOR FOR VISITER
-    //skill?
-    @Select("SELECT user_name as userName,"
-            + "first_name as firstName,"
-            + "last_name as lastName,"
-            + "img,"
-            + "ranked,"
-            + "is_student as isStudent,"
-            + "role,"
-            + "balance "
-            + "FROM account "
-            + "WHERE user_name = #{userName}")
-    AccountDataset getInforForVisiter(@Param("userName") String userName);
 
     @Select("SELECT COUNT(0) " +
             "FROM ACCOUNT " +
@@ -196,4 +151,59 @@ public interface AccountMapper {
             "WHERE USER_NAME  = #{userName} " +
             "AND PASSWORD =#{password}")
     AccountLoginDataset login(@Param("userName") String userName, @Param("password") String password);
+
+	
+	//VERIFY STUDENT
+	@Update("UPDATE account "
+			+ "SET is_student = '1',"
+			+ "UPD_DATE = clock_timestamp() "
+			+ "WHERE user_name = #{userName}")
+	int verifyStudent(@Param("userName") String userName);
+	
+	//GET CONTACT
+	
+	@Select("Select phone_no as phoneNo,"
+			+ "addr,"
+			+ "email "
+			+ "FROM account "
+			+ "WHERE user_name = #{userName}")
+	AccountDataset getContact(@Param("userName") String userName);
+	
+	//GET ALL INFOR 
+	//skill?
+	@Select("SELECT user_name as userName,"
+			+ "first_name as firstName,"
+			+ "last_name as lastName,"
+			+ "addr,"
+			+ "phone_no as phoneNo,"
+			+ "email,"
+			+ "img,"
+			+ "ranked,"
+			+ "is_student as isStudent,"
+			+ "role,"
+			+ "balance "
+			+ "FROM account "
+			+ "WHERE user_name = #{userName}")
+	AccountDataset getAllInfor(@Param("userName") String userName);
+	
+	//GET INFOR FOR VISITER
+	//skill?
+	@Select("SELECT user_name as userName,"
+			+ "first_name as firstName,"
+			+ "last_name as lastName,"
+			+ "img,"
+			+ "ranked,"
+			+ "is_student as isStudent,"
+			+ "role,"
+			+ "balance "
+			+ "FROM account "
+			+ "WHERE user_name = #{userName}")
+	AccountDataset getInforForVisiter(@Param("userName") String userName);
+	
+	
+	
+	// Delete Account 
+	@Delete("DELETE account WHERE user_name = #{userName}")
+	int deleteAccount(@Param("userName") String userName);
+
 }

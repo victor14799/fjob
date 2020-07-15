@@ -2,12 +2,12 @@ package com.example.fjob.service.service.account;
 
 import java.util.List;
 
-import com.example.fjob.lib.dataset.account.AccountLoginDataset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.fjob.lib.component.account.AccountComponent;
 import com.example.fjob.lib.dataset.account.AccountDataset;
+import com.example.fjob.lib.dataset.account.AccountLoginDataset;
 import com.example.fjob.lib.dataset.otp.OTPDataset;
 
 @Service
@@ -118,5 +118,11 @@ public class AccountServiceImp implements AccountService{
 		return component.checkLogin(userName, password);
 	}
 
+	@Override
+	public int deleteAccount(String userName) {
+		return component.deleteAccount(userName);
+	}
+
+	
 
 }

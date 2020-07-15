@@ -135,4 +135,16 @@ public class AccountComponentImp implements AccountComponent {
     }
 
 
+//get all infor
+
+
+
+//delete account
+@Override
+public int deleteAccount(String userName) {
+	
+	return mapper.deleteAccount(userName);
+}
+
+
 }
