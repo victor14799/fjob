@@ -49,7 +49,7 @@ public interface PostMapper {
             "ON " +
             "   T1.USER_NAME = T0.USER_NAME   " +
             "ORDER BY " +
-            "   T0.INS_DATE ")
+            "   T0.INS_DATE DESC")
     List<PostOverviewDataset> selOverviewPost();
 
     @Select("SELECT " +
