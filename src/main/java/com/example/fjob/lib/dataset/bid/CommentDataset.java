@@ -29,7 +29,7 @@ public class CommentDataset {
     }
 
     public String getPrice() {
-        return CommonUtils.formatMoney(this.price);
+        return price;
     }
 
     public void setPrice(String price) {
