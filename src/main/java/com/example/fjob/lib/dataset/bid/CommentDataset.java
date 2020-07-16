@@ -9,7 +9,7 @@ public class CommentDataset {
     private String fullName;
     private String price;
     private Date dueDate;
-    private String imgUrl;
+    private String img;
     private Date insDate;
 
     public String getBidUser() {
@@ -44,12 +44,12 @@ public class CommentDataset {
         this.dueDate = dueDate;
     }
 
-    public String getImgUrl() {
-        return imgUrl != null? imgUrl : "";
+    public String getImg() {
+        return img;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public Date getInsDate() {

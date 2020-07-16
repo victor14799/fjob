@@ -54,7 +54,7 @@ public interface BidMapper {
     @Select("SELECT  " +
             " T0.BID_USER AS bidUser,  " +
             " T1.LAST_NAME || ' ' || T1.FIRST_NAME AS fullName, " +
-            " COALESCE(T1.IMG,' ') AS img, " +
+            " COALESCE(T1.IMG,'') AS img, " +
             " T0.PRICE AS price, " +
             " T0.DUE_DATE AS dueDate, " +
             " T0.INS_DATE AS insDate" +
