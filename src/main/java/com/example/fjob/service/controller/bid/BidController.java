@@ -33,7 +33,7 @@ public class BidController {
         return service.updateBid(paramDataset);
     }
 
-    @DeleteMapping("/{postId}/delBid")
+    @RequestMapping(value ="/{postId}/delBid", method = RequestMethod.DELETE)
     public boolean delBid(@RequestBody BidParamDataset paramDataset) {
         return service.delBid(paramDataset);
     }
