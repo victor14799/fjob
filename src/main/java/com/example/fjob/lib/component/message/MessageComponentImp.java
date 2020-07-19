@@ -47,6 +47,8 @@ public class MessageComponentImp implements MessageComponent {
 	public boolean insertMessage(Message message) {
 		// TODO Auto-generated method stub
 		message.setId(CommonUtils.randomID());
+		String img = mapper.getImg(message.getAddUsername());
+		message.setImg(img);
 		return mapper.insertMessage(message);
 	}
 

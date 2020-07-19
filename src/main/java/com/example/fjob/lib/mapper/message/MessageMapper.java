@@ -15,7 +15,8 @@ import com.example.fjob.lib.dataset.message.Message;
 public interface MessageMapper {
 
 	@Select(" SELECT " + "	mess_id as id, " + "	username, " + "	title, " + "	body, " + "	payload, " + "	seen_flg, "
-			+ "	ins_date " + " FROM message " + " WHERE username = #{username} ")
+			+ "	ins_date, "
+			+ "	addUsername, img " + " FROM message " + " WHERE username = #{username} ")
 	List<Message> getMessage(@Param("username") String username);
 
 	@Update("UPDATE message " + "set seen_flg=#{seen_flg} " + "WHERE mess_id= #{id}" + "AND username = #{username}")
@@ -28,13 +29,18 @@ public interface MessageMapper {
 	boolean clearMessage(@Param("username") String username);
 	
 	@Insert("INSERT INTO "
-			+ "message (mess_id, username, title, body, payload, seen_flg, ins_date) "
+			+ "message (mess_id, username, title, body, payload, seen_flg, add_username, img, ins_date) "
 			+ "VALUES(#{id}, "
 			+ "	#{username}, "
 			+ "	#{title},"
 			+ " #{body},"
 			+ " #{payload},"
 			+ " #{seen_flg},"
+			+ "	#{addUsername}, "
+			+ "	#{img},	"
 			+ " CURRENT_TIMESTAMP)" )
 	boolean insertMessage(Message message);
+	
+	@Select("Select COALESCE(img,'') from account where user_name = #{username}")
+	String getImg(@Param("username") String username);
 }

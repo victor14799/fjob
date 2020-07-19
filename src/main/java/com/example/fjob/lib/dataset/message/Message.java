@@ -11,7 +11,24 @@ public class Message {
 	private String payload;
 	private Date ins_date;
 	private String seen_flg;
-	
+	private String img;
+	private String addUsername;
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+	public String getAddUsername() {
+		return addUsername;
+	}
+
+	public void setAddUsername(String addUsername) {
+		this.addUsername = addUsername;
+	}
 
 	public String getPayload() {
 		return payload;
