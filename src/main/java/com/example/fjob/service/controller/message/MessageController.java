@@ -35,7 +35,7 @@ public class MessageController {
 	}
 
 	@GetMapping("/getMessage/{username}")
-	List<Message> getMessage(@PathParam("username") String username) {
+	List<Message> getMessage(@PathVariable("username") String username) {
 		return service.getMessage(username);
 	};
 
