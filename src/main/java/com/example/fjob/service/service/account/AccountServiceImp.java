@@ -123,6 +123,11 @@ public class AccountServiceImp implements AccountService{
 		return component.deleteAccount(userName);
 	}
 
+	@Override
+	public int setPicture(String userName,String imgUrl) {
+		return component.setPicture(userName,imgUrl);
+	}
+
 	
 
 }

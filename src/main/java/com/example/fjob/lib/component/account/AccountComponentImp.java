@@ -146,5 +146,11 @@ public int deleteAccount(String userName) {
 	return mapper.deleteAccount(userName);
 }
 
+//set picture
+@Override
+public int setPicture(String userName,String imgUrl) {
+	return mapper.setPicture(userName,imgUrl);
+}
+
 
 }

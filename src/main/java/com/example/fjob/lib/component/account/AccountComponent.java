@@ -70,4 +70,6 @@ public interface AccountComponent {
  
  int deleteAccount(String userName);
 
+ //set picture 
+ int setPicture(String userName,String imgUrl);
 }

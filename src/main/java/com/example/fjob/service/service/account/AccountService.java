@@ -41,10 +41,6 @@ public interface AccountService {
 
     int updateProfile(AccountDataset account);
 
-////update password
-//
-//int updatePassword(String password);
-
 // verify student
 
     int verifyStudent(String userName, String email);
@@ -69,5 +65,10 @@ public interface AccountService {
 //int delete account
 
 int deleteAccount(String userName);
+
+//int setPicture
+
+int setPicture(String userName,String imgUrl);
+
 
 }
