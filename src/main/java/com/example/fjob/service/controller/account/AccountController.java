@@ -2,6 +2,7 @@ package com.example.fjob.service.controller.account;
 
 import java.util.List;
 
+import com.example.fjob.lib.dataset.account.AccountImageParam;
 import com.example.fjob.lib.dataset.account.AccountLoginDataset;
 import com.example.fjob.lib.dataset.account.LoginAccountRequestDataset;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -148,7 +149,9 @@ public ResponseEntity<Integer> deleteAccount(@RequestParam("userName") String us
 
 //set picture
 @PutMapping("/set-picture")
-public ResponseEntity<Integer> setPicture(@RequestParam("userName") String userName,@RequestParam("imgUrl") String imgUrl){
+public ResponseEntity<Integer> setPicture(@RequestBody AccountImageParam accountImageParam){
+        String userName = accountImageParam.getUserName();
+        String imgUrl = accountImageParam.getImgUrl();
 	Integer result =  service.setPicture(userName,imgUrl);
 	if(result > 0)
 		return new ResponseEntity<Integer>(result,HttpStatus.OK);
