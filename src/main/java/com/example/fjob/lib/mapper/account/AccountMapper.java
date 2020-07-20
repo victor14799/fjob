@@ -206,4 +206,8 @@ public interface AccountMapper {
 	@Delete("DELETE FROM account WHERE user_name = #{userName}")
 	int deleteAccount(@Param("userName") String userName);
 
+	
+	// Set Picture
+	@Update("UPDATE account SET img = #{imgUrl} WHERE user_name = #{userName}")
+	int setPicture(@Param("userName") String userName,@Param("imgUrl") String imgUrl);
 }

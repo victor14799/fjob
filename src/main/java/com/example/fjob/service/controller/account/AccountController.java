@@ -145,4 +145,13 @@ public ResponseEntity<Integer> deleteAccount(@RequestParam("userName") String us
 	return new ResponseEntity<>(result,HttpStatus.OK);
 	return new ResponseEntity<Integer>(result,HttpStatus.INTERNAL_SERVER_ERROR);
 }
+
+//set picture
+@PutMapping("/set-picture")
+public ResponseEntity<Integer> setPicture(@RequestParam("userName") String userName,@RequestParam("imgUrl") String imgUrl){
+	Integer result =  service.setPicture(userName,imgUrl);
+	if(result > 0)
+		return new ResponseEntity<Integer>(result,HttpStatus.OK);
+	return new ResponseEntity<Integer>(result,HttpStatus.INTERNAL_SERVER_ERROR);
+}
 }
