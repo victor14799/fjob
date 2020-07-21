@@ -2,12 +2,13 @@ package com.example.fjob.service.controller.account;
 
 import java.util.List;
 
-import com.example.fjob.lib.dataset.account.AccountImageParam;
-import com.example.fjob.lib.dataset.account.AccountLoginDataset;
-import com.example.fjob.lib.dataset.account.LoginAccountRequestDataset;
+import com.example.fjob.lib.component.account.ApplicationUserComponent;
+import com.example.fjob.lib.dataset.account.*;
+import com.example.fjob.service.datamodel.AdminDashboardDatamodel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,25 +18,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.fjob.lib.dataset.account.AccountDataset;
 import com.example.fjob.lib.dataset.otp.OTPDataset;
 import com.example.fjob.service.service.account.AccountService;
 
 @RestController
 @RequestMapping("fjob/v1/user")
 public class AccountController {
-    AccountService service;
+    private AccountService service;
+    private ApplicationUserComponent applicationUserComponent;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public AccountController(AccountService service) {
+    public AccountController(AccountService service, ApplicationUserComponent applicationUserComponent, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.service = service;
+        this.applicationUserComponent = applicationUserComponent;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
-
 //insert new account
 
     @PostMapping("/create")
     public ResponseEntity<HttpStatus> insertNewAccount(
-            @RequestBody AccountDataset account) {
+            @RequestBody UserSignUpParamDataset account) {
         if (service.insertNewAccount(account) > 0) {
             return new ResponseEntity<HttpStatus>(HttpStatus.CREATED);
         }
@@ -139,22 +142,34 @@ public class AccountController {
 
 //delete account
 
-@DeleteMapping("/delete-account")
-public ResponseEntity<Integer> deleteAccount(@RequestParam("userName") String userName){
-	Integer result = service.deleteAccount(userName);
-	if(result > 0)
-	return new ResponseEntity<>(result,HttpStatus.OK);
-	return new ResponseEntity<Integer>(result,HttpStatus.INTERNAL_SERVER_ERROR);
-}
+    @DeleteMapping("/delete-account")
+    public ResponseEntity<Integer> deleteAccount(@RequestParam("userName") String userName) {
+        Integer result = service.deleteAccount(userName);
+        if (result > 0)
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<Integer>(result, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
-//set picture
-@PutMapping("/set-picture")
-public ResponseEntity<Integer> setPicture(@RequestBody AccountImageParam accountImageParam){
+    //set picture
+    @PutMapping("/set-picture")
+    public ResponseEntity<Integer> setPicture(@RequestBody AccountImageParam accountImageParam) {
         String userName = accountImageParam.getUserName();
         String imgUrl = accountImageParam.getImgUrl();
-	Integer result =  service.setPicture(userName,imgUrl);
-	if(result > 0)
-		return new ResponseEntity<Integer>(result,HttpStatus.OK);
-	return new ResponseEntity<Integer>(result,HttpStatus.INTERNAL_SERVER_ERROR);
-}
+        Integer result = service.setPicture(userName, imgUrl);
+        if (result > 0)
+            return new ResponseEntity<Integer>(result, HttpStatus.OK);
+        return new ResponseEntity<Integer>(result, HttpStatus.INTERNAL_SERVER_ERROR);
+
+    }
+
+    @PostMapping("/sign-up")
+    public void signUp(@RequestBody UserSignUpParamDataset user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        applicationUserComponent.signUp(user);
+    }
+
+    @GetMapping("/admin/dashboard")
+    public AdminDashboardDatamodel getAdminDashboard() {
+        return service.getAdminDashboard();
+    }
 }

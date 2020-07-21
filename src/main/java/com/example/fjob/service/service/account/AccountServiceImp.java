@@ -2,6 +2,8 @@ package com.example.fjob.service.service.account;
 
 import java.util.List;
 
+import com.example.fjob.lib.dataset.account.UserSignUpParamDataset;
+import com.example.fjob.service.datamodel.AdminDashboardDatamodel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,123 +13,130 @@ import com.example.fjob.lib.dataset.account.AccountLoginDataset;
 import com.example.fjob.lib.dataset.otp.OTPDataset;
 
 @Service
-public class AccountServiceImp implements AccountService{
+public class AccountServiceImp implements AccountService {
 
-	AccountComponent component;
-	
-	@Autowired
-	public AccountServiceImp(AccountComponent component) {
-		super();
-		this.component = component;
-	}
-	
-	//insert new account
-	
-	@Override
-	public int insertNewAccount(AccountDataset account) {
-		return component.insertNewAccount(account);
-	}
-	
-	//disable account
-	
-	@Override
-	public int disableAccount(String username) {
-		return component.disableAccount(username);
-	}
+    AccountComponent component;
 
-	//reset password
-	
-	@Override
-	public int resetPassword(AccountDataset account) {
-		return component.resetPassword(account);
-	}
+    @Autowired
+    public AccountServiceImp(AccountComponent component) {
+        super();
+        this.component = component;
+    }
 
-	//get all user
-	
-	@Override
-	public List<AccountDataset> getAllUser() {
-		return component.getAllUser();
-	}
+    //insert new account
 
-	
-	//count no user
-	
-	@Override
-	public int countNumberUser() {
-		return component.countNumberUser();
-	}
+    @Override
+    public int insertNewAccount(UserSignUpParamDataset account) {
+        return component.insertNewAccount(account);
+    }
 
-	//verify account
-	
-	@Override
-	public int verifyAccount(OTPDataset otp) {
-		return component.verifyAccount(otp);
-	}
+    //disable account
 
-	//update balance
-	
-	@Override
-	public int updateBalance(String balance, String userName) {
-		return component.updateBalance(balance, userName);
-	}
+    @Override
+    public int disableAccount(String username) {
+        return component.disableAccount(username);
+    }
 
-	//update profile 
-	
-	@Override
-	public int updateProfile(AccountDataset account) {
-		return component.updateProfile(account);
-	}
+    //reset password
+
+    @Override
+    public int resetPassword(AccountDataset account) {
+        return component.resetPassword(account);
+    }
+
+    //get all user
+
+    @Override
+    public List<AccountDataset> getAllUser() {
+        return component.getAllUser();
+    }
+
+
+    //count no user
+
+    @Override
+    public int countNumberUser() {
+        return component.countNumberUser();
+    }
+
+    //verify account
+
+    @Override
+    public int verifyAccount(OTPDataset otp) {
+        return component.verifyAccount(otp);
+    }
+
+    //update balance
+
+    @Override
+    public int updateBalance(String balance, String userName) {
+        return component.updateBalance(balance, userName);
+    }
+
+    //update profile
+
+    @Override
+    public int updateProfile(AccountDataset account) {
+        return component.updateProfile(account);
+    }
 
 //	@Override
 //	public int updatePassword(String password) {
 //		return component.updatePassword(password);
 //	}
 
-	
-	//verify student
-	@Override
-	public int verifyStudent(String userName, String email) {
-		return component.verifyStudent(userName, email);
-	}
 
-	//get contact
-	
-	@Override
-	public AccountDataset getContact(String userName) {
-		return component.getContact(userName);
-	}
+    //verify student
+    @Override
+    public int verifyStudent(String userName, String email) {
+        return component.verifyStudent(userName, email);
+    }
 
-	@Override
-	public AccountDataset getAllInfor(String userName) {
-		return component.getAllInfor(userName);
-	}
+    //get contact
 
-	@Override
-	public AccountDataset getInforForVisiter(String userName) {
-		
-		return component.getInforForVisiter(userName);
-	}
+    @Override
+    public AccountDataset getContact(String userName) {
+        return component.getContact(userName);
+    }
 
-	@Override
-	public boolean isAccountEmailExist(String email) {
-		return component.isExistedEmail(email);
-	}
+    @Override
+    public AccountDataset getAllInfor(String userName) {
+        return component.getAllInfor(userName);
+    }
 
-	@Override
-	public AccountLoginDataset checkLogin(String userName, String password) {
-		return component.checkLogin(userName, password);
-	}
+    @Override
+    public AccountDataset getInforForVisiter(String userName) {
 
-	@Override
-	public int deleteAccount(String userName) {
-		return component.deleteAccount(userName);
-	}
+        return component.getInforForVisiter(userName);
+    }
 
-	@Override
-	public int setPicture(String userName,String imgUrl) {
-		return component.setPicture(userName,imgUrl);
-	}
+    @Override
+    public boolean isAccountEmailExist(String email) {
+        return component.isExistedEmail(email);
+    }
 
-	
+    @Override
+    public AccountLoginDataset checkLogin(String userName, String password) {
+        return component.checkLogin(userName, password);
+    }
+
+    @Override
+    public int deleteAccount(String userName) {
+        return component.deleteAccount(userName);
+    }
+
+    @Override
+    public int setPicture(String userName, String imgUrl) {
+        return component.setPicture(userName, imgUrl);
+    }
+
+    @Override
+    public AdminDashboardDatamodel getAdminDashboard() {
+        AdminDashboardDatamodel result = new AdminDashboardDatamodel();
+        result.setPostAdminDashboardDataset(component.selOverviewPost());
+        result.setUserAdminDashboardDataset(component.selOverviewUser());
+        return result;
+    }
+
 
 }

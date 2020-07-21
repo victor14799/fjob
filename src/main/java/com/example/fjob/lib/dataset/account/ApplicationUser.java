@@ -1,8 +1,10 @@
 package com.example.fjob.lib.dataset.account;
 
-public class AccountLoginDataset {
+public class ApplicationUser {
+
     private String username;
     private String password;
+    private String email;
 
     public String getUsername() {
         return username;
@@ -18,5 +20,13 @@ public class AccountLoginDataset {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

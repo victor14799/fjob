@@ -4,13 +4,15 @@ import java.util.List;
 
 import com.example.fjob.lib.dataset.account.AccountDataset;
 import com.example.fjob.lib.dataset.account.AccountLoginDataset;
+import com.example.fjob.lib.dataset.account.UserSignUpParamDataset;
 import com.example.fjob.lib.dataset.otp.OTPDataset;
+import com.example.fjob.service.datamodel.AdminDashboardDatamodel;
 
 public interface AccountService {
 
     //insert new account
 
-    int insertNewAccount(AccountDataset account);
+    int insertNewAccount(UserSignUpParamDataset account);
 
 
 //disable account
@@ -64,11 +66,12 @@ public interface AccountService {
 
 //int delete account
 
-int deleteAccount(String userName);
+    int deleteAccount(String userName);
 
 //int setPicture
 
-int setPicture(String userName,String imgUrl);
+    int setPicture(String userName, String imgUrl);
 
+    AdminDashboardDatamodel getAdminDashboard();
 
 }

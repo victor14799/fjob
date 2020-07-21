@@ -1,6 +1,7 @@
 package com.example.fjob.lib.mapper.account;
 import java.util.List;
-import com.example.fjob.lib.dataset.account.AccountLoginDataset;
+
+import com.example.fjob.lib.dataset.account.*;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -8,50 +9,10 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.example.fjob.lib.dataset.account.AccountDataset;
 import com.example.fjob.lib.dataset.otp.OTPDataset;
 
 @Mapper
 public interface AccountMapper {
-
-// INSERT NEW ACCOUNT
-
-    @Insert("INSERT INTO public.account" +
-            "(addr,"
-            + " email,"
-            + " first_name,"
-            + " password,"
-            + " phone_no,"
-            + " user_name,"
-            + " last_name,"
-            + " img,"
-            + " ranked,"
-            + " is_student,"
-            + " is_verify,"
-            + " role,"
-            + " balance,"
-            + " del_flg,"
-            + " ins_date,"
-            + " gender)" +
-            "VALUES("
-            + " #{addr},"
-            + " #{email},"
-            + " #{firstName},"
-            + " #{password},"
-            + " #{phoneNo},"
-            + " #{userName},"
-            + " #{lastName},"
-            + " #{img},"
-            + " #{ranked},"
-            + " #{isStudent},"
-            + " #{isVerify},"
-            + " #{role},"
-            + " '0',"
-            + " '0',"
-            + "clock_timestamp(),"
-            + " #{gender})")
-    int insertNewAccount(AccountDataset account);
-
 
     // DISABLE ACCOUNT
 
@@ -141,18 +102,6 @@ public interface AccountMapper {
             "AND IS_VERIFY = '1'")
     int isAccountEmailExisted(@Param("email") String email);
 
-    @Select("SELECT USER_NAME AS userName,  " +
-            "FIRST_NAME AS firstName,  " +
-            "LAST_NAME AS lastName," +
-            "EMAIL AS email,  " +
-            "IMG AS img," +
-            "BALANCE AS balance " +
-            "FROM ACCOUNT  " +
-            "WHERE USER_NAME  = #{userName} " +
-            "AND PASSWORD =#{password}")
-    AccountLoginDataset login(@Param("userName") String userName, @Param("password") String password);
-
-	
 	//VERIFY STUDENT
 	@Update("UPDATE account "
 			+ "SET is_student = '1',"
@@ -200,8 +149,6 @@ public interface AccountMapper {
 			+ "WHERE user_name = #{userName}")
 	AccountDataset getInforForVisiter(@Param("userName") String userName);
 	
-	
-	
 	// Delete Account 
 	@Delete("DELETE FROM account WHERE user_name = #{userName}")
 	int deleteAccount(@Param("userName") String userName);
@@ -210,4 +157,63 @@ public interface AccountMapper {
 	// Set Picture
 	@Update("UPDATE account SET img = #{imgUrl} WHERE user_name = #{userName}")
 	int setPicture(@Param("userName") String userName,@Param("imgUrl") String imgUrl);
+
+	@Select("SELECT USER_NAME AS username,  " +
+			"PASSWORD AS password,  " +
+			"EMAIL AS email " +
+			"FROM ACCOUNT " +
+			"WHERE USER_NAME  = #{userName} " +
+			"AND DEL_FLG != '1'")
+	ApplicationUser login(@Param("userName") String userName);
+
+	@Insert("INSERT INTO ACCOUNT" +
+			"(addr,"
+			+ " email,"
+			+ " first_name,"
+			+ " password,"
+			+ " phone_no,"
+			+ " user_name,"
+			+ " last_name,"
+			+ " img,"
+			+ " ranked,"
+			+ " is_student,"
+			+ " is_verify,"
+			+ " role,"
+			+ " balance,"
+			+ " del_flg,"
+			+ " ins_date,"
+			+ " gender)" +
+			"VALUES("
+			+ " '',"
+			+ " #{email},"
+			+ " #{firstName},"
+			+ " #{password},"
+			+ " #{phoneNo},"
+			+ " #{username},"
+			+ " #{lastName},"
+			+ " '',"
+			+ " '0',"
+			+ " #{isStudent},"
+			+ " #{isVerify},"
+			+ " '0',"
+			+ " '0',"
+			+ " '0',"
+			+ "clock_timestamp(),"
+			+ " #{gender})")
+	int insertNewAccount(UserSignUpParamDataset user);
+
+	@Select("SELECT COUNT(0) AS totalPost, " +
+			"(SELECT COUNT(0) FROM POST WHERE STATUS = '0') AS openPost, " +
+			"(SELECT COUNT(0) FROM POST WHERE STATUS = '1') AS pendingPost," +
+			"(SELECT COUNT(0) FROM POST WHERE STATUS = '2') AS closedPost " +
+			"FROM POST")
+	PostAdminDashboardDataset selOverviewPost();
+
+	@Select("SELECT COUNT(0) AS totalUser, " +
+			"(SELECT COUNT(0) FROM ACCOUNT WHERE DEL_FLG ='0') AS active, " +
+			"(SELECT COUNT(0) FROM ACCOUNT WHERE IS_STUDENT ='1') AS student, " +
+			"(SELECT COUNT(0) FROM ACCOUNT WHERE IS_VERIFY ='1') AS verified " +
+			"FROM ACCOUNT")
+	UserAdminDashboardDataset selOverviewUser();
+
 }

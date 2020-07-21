@@ -2,12 +2,11 @@ package com.example.fjob.lib.component.account;
 
 import java.util.List;
 
-import com.example.fjob.lib.dataset.account.AccountLoginDataset;
+import com.example.fjob.lib.dataset.account.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.example.fjob.lib.component.otp.OTPComponent;
-import com.example.fjob.lib.dataset.account.AccountDataset;
 import com.example.fjob.lib.dataset.otp.OTPDataset;
 import com.example.fjob.lib.mapper.account.AccountMapper;
 
@@ -23,22 +22,22 @@ public class AccountComponentImp implements AccountComponent {
         this.otpComponent = otpComponent;
     }
 
-// Insert New Account
+    // Insert New Account
 
     @Override
-    public int insertNewAccount(AccountDataset account) {
+    public int insertNewAccount(UserSignUpParamDataset account) {
 
         return mapper.insertNewAccount(account);
     }
 
-//Disable Account
+    //Disable Account
 
     @Override
     public int disableAccount(String username) {
         return mapper.disableAccount(username);
     }
 
-//reset password
+    //reset password
 
     @Override
     public int resetPassword(AccountDataset account) {
@@ -46,21 +45,21 @@ public class AccountComponentImp implements AccountComponent {
         return result;
     }
 
-//get all user
+    //get all user
 
     @Override
     public List<AccountDataset> getAllUser() {
         return mapper.getAllUser();
     }
 
-// count number of user
+    // count number of user
 
     @Override
     public int countNumberUser() {
         return mapper.countNumberUser();
     }
 
-//verify account
+    //verify account
 
     @Override
     public int verifyAccount(OTPDataset otp) {
@@ -71,29 +70,29 @@ public class AccountComponentImp implements AccountComponent {
         return 0;
     }
 
-//update balance
+    //update balance
 
     @Override
     public int updateBalance(String balance, String userName) {
         return mapper.updateBalance(balance, userName);
     }
 
-//update profile
+    //update profile
 
     @Override
     public int updateProfile(AccountDataset account) {
         return mapper.updateProfile(account);
     }
 
-////update password
-//
-//@Override
-//public int updatePassword(String password) {
-//	return mapper.updatePassword(password);
-//}
+    ////update password
+    //
+    //@Override
+    //public int updatePassword(String password) {
+    //	return mapper.updatePassword(password);
+    //}
 
 
-//verify student
+    //verify student
 
     @Override
     public int verifyStudent(String userName, String email) {
@@ -104,7 +103,7 @@ public class AccountComponentImp implements AccountComponent {
         return 0;
     }
 
-//get contact
+    //get contact
 
     @Override
     public AccountDataset getContact(String userName) {
@@ -131,26 +130,36 @@ public class AccountComponentImp implements AccountComponent {
 
     @Override
     public AccountLoginDataset checkLogin(String userName, String password) {
-        return mapper.login(userName, password);
+//        return mapper.login(userName, password);
+        return null;
     }
 
 
-//get all infor
+    //get all infor
 
 
+    //delete account
+    @Override
+    public int deleteAccount(String userName) {
 
-//delete account
-@Override
-public int deleteAccount(String userName) {
-	
-	return mapper.deleteAccount(userName);
-}
+        return mapper.deleteAccount(userName);
+    }
 
-//set picture
-@Override
-public int setPicture(String userName,String imgUrl) {
-	return mapper.setPicture(userName,imgUrl);
-}
+    //set picture
+    @Override
+    public int setPicture(String userName, String imgUrl) {
+        return mapper.setPicture(userName, imgUrl);
+    }
+
+    @Override
+    public PostAdminDashboardDataset selOverviewPost() {
+        return mapper.selOverviewPost();
+    }
+
+    @Override
+    public UserAdminDashboardDataset selOverviewUser() {
+        return mapper.selOverviewUser();
+    }
 
 
 }
