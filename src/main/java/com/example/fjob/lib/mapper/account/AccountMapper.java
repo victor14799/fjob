@@ -131,7 +131,8 @@ public interface AccountMapper {
 			+ "is_student as isStudent,"
 			+ "role,"
 			+ "balance,"
-			+ "birthdate as birthdate "
+			+ "birthdate as birthdate, "
+			+ "gender as gender "
 			+ "FROM account "
 			+ "WHERE user_name = #{userName}")
 	AccountDataset getAllInfor(@Param("userName") String userName);
