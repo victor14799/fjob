@@ -156,7 +156,7 @@ public interface AccountMapper {
 
 	
 	// Set Picture
-	@Update("UPDATE account SET img = #{imgUrl} WHERE user_name = #{userName}")
+	@Update("UPDATE account SET img = #{imgUrl},upd_date = clock_timestamp() WHERE user_name = #{userName}")
 	int setPicture(@Param("userName") String userName,@Param("imgUrl") String imgUrl);
 
 	@Select("SELECT USER_NAME AS username,  " +
