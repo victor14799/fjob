@@ -1,5 +1,6 @@
 package com.example.fjob.service.service.post;
 
+import com.example.fjob.lib.dataset.post.PostAdminOverviewDataset;
 import com.example.fjob.lib.dataset.post.PostDetailDataset;
 import com.example.fjob.lib.dataset.post.PostOverviewDataset;
 import com.example.fjob.lib.dataset.post.PostParamDataset;
@@ -9,6 +10,7 @@ import java.util.List;
 public interface PostService {
     /**
      * insPost
+     *
      * @param paramDataset
      * @return
      */
@@ -16,12 +18,12 @@ public interface PostService {
 
     /**
      * getAllPost
+     *
      * @return List<PostOverviewDataset>
      */
     List<PostOverviewDataset> getAllPost();
 
     /**
-     *
      * @param postId
      * @return PostDetailDataset
      */
@@ -29,6 +31,7 @@ public interface PostService {
 
     /**
      * countPostByStatus
+     *
      * @param status
      * @return
      */
@@ -36,6 +39,7 @@ public interface PostService {
 
     /**
      * delPost
+     *
      * @param postId
      * @return
      */
@@ -43,6 +47,7 @@ public interface PostService {
 
     /**
      * updPost
+     *
      * @param paramDataset
      * @return
      */
@@ -50,10 +55,13 @@ public interface PostService {
 
     /**
      * searchPost
+     *
      * @param title
      * @param status
      * @param tag
      * @return List<PostOverviewDataset>
      */
     List<PostOverviewDataset> searchPost(String title, String status, String tag);
+
+    List<PostAdminOverviewDataset> selAdminPostOverview();
 }

@@ -1,6 +1,7 @@
 package com.example.fjob.service.service.post;
 
 import com.example.fjob.lib.component.post.PostComponent;
+import com.example.fjob.lib.dataset.post.PostAdminOverviewDataset;
 import com.example.fjob.lib.dataset.post.PostDetailDataset;
 import com.example.fjob.lib.dataset.post.PostOverviewDataset;
 import com.example.fjob.lib.dataset.post.PostParamDataset;
@@ -87,5 +88,10 @@ public class PostServiceImp implements PostService{
     @Override
     public List<PostOverviewDataset> searchPost(String title, String status, String tag) {
         return component.searchPost(title, status, tag);
+    }
+
+    @Override
+    public List<PostAdminOverviewDataset> selAdminPostOverview() {
+        return component.selAdminOverview();
     }
 }

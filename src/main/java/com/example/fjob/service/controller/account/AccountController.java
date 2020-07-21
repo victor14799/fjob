@@ -167,9 +167,4 @@ public class AccountController {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         applicationUserComponent.signUp(user);
     }
-
-    @GetMapping("/admin/dashboard")
-    public AdminDashboardDatamodel getAdminDashboard() {
-        return service.getAdminDashboard();
-    }
 }
