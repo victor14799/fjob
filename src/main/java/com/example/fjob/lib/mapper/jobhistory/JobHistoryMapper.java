@@ -55,7 +55,7 @@ public interface JobHistoryMapper {
     @Select("select " + 
     		"	jh.feedback, " + 
     		"	jh.comment, " + 
-    		"	jh.ins_date as feebackDate, " + 
+    		"	jh.ins_date as feedbackDate, " + 
     		"	p.title,	" + 
     		"	a.first_name || ' ' || a.last_name as fullname	" + 
     		"	from job_history jh	" + 
