@@ -8,6 +8,15 @@ public class UserFeedback {
 	private Date feedbackDate;
 	private String title;
 	private String fullname;
+	private String img;
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
 
 	public String getFeedback() {
 		return feedback;

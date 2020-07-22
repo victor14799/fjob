@@ -57,7 +57,8 @@ public interface JobHistoryMapper {
     		"	jh.comment, " + 
     		"	jh.ins_date as feedbackDate, " + 
     		"	p.title,	" + 
-    		"	a.first_name || ' ' || a.last_name as fullname	" + 
+    		"	a.first_name || ' ' || a.last_name as fullname	,"
+    		+ " a.img as img" + 
     		"	from job_history jh	" + 
     		"	inner join post p using(post_id)	" + 
     		"	inner join account a on p.user_name = a.user_name " + 
