@@ -27,6 +27,6 @@ public interface SkillMapper {
     		" from " + 
     		"	has_skill as hs " + 
     		"inner join skill_category as T01 using(skill_id) " + 
-    		"where user_name = #{username}")
+    		"where hs.user_name = #{username}")
     List<UserSkill> getSkillOfUser(@Param("username") String username);
 }

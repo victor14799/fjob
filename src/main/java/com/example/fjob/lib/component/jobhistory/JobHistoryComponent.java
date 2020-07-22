@@ -2,6 +2,7 @@ package com.example.fjob.lib.component.jobhistory;
 
 import com.example.fjob.lib.dataset.jobhistory.JobHistoryDataset;
 import com.example.fjob.lib.dataset.jobhistory.JobParamDataset;
+import com.example.fjob.lib.dataset.jobhistory.UserFeedback;
 
 import java.util.List;
 
@@ -27,4 +28,6 @@ public interface JobHistoryComponent {
      * @return boolean
      */
     boolean updateFeedback(JobParamDataset paramDataset);
+    
+    List<UserFeedback> getUserFeedback(String username);
 }

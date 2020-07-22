@@ -2,6 +2,7 @@ package com.example.fjob.service.controller.jobhistory;
 
 import com.example.fjob.lib.dataset.jobhistory.JobHistoryDataset;
 import com.example.fjob.lib.dataset.jobhistory.JobParamDataset;
+import com.example.fjob.lib.dataset.jobhistory.UserFeedback;
 import com.example.fjob.service.service.jobhistory.JobHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -23,5 +24,10 @@ public class JobHistoryController {
     @GetMapping("/{bidUser}")
     List<JobHistoryDataset> selJobHistory(@PathVariable("bidUser") String bidUser){
         return service.getJobHistory(bidUser);
+    }
+    
+    @GetMapping("/feedbacks/{username}")
+    List<UserFeedback> getUseFeedback(@PathVariable("username") String username){
+        return service.getUserFeedback(username);
     }
 }

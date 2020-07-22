@@ -2,6 +2,8 @@ package com.example.fjob.lib.mapper.jobhistory;
 
 import com.example.fjob.lib.dataset.jobhistory.JobHistoryDataset;
 import com.example.fjob.lib.dataset.jobhistory.JobParamDataset;
+import com.example.fjob.lib.dataset.jobhistory.UserFeedback;
+
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -49,4 +51,16 @@ public interface JobHistoryMapper {
             "   POST_ID=#{postId} " +
             "   AND BID_USER=#{bidUser}")
     int updateFeedback(JobParamDataset paramDataset);
+    
+    @Select("select " + 
+    		"	jh.feedback, " + 
+    		"	jh.comment, " + 
+    		"	jh.ins_date as feebackDate, " + 
+    		"	p.title,	" + 
+    		"	a.first_name || ' ' || a.last_name as fullname	" + 
+    		"	from job_history jh	" + 
+    		"	inner join post p using(post_id)	" + 
+    		"	inner join account a on p.user_name = a.user_name " + 
+    		"	where bid_user = #{username}")
+    List<UserFeedback> selUserFeedback(@Param("username")String username);
 }
