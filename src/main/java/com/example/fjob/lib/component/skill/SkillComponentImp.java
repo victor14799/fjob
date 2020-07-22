@@ -1,6 +1,7 @@
 package com.example.fjob.lib.component.skill;
 
 import com.example.fjob.lib.dataset.skill.SkillDataset;
+import com.example.fjob.lib.dataset.skill.UserSkill;
 import com.example.fjob.lib.mapper.skill.SkillMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,4 +21,10 @@ public class SkillComponentImp implements SkillComponent{
     public List<SkillDataset> getListSkill() {
         return mapper.getListSkill();
     }
+
+	@Override
+	public List<UserSkill> getSkillOfUser(String username) {
+		
+		return mapper.getSkillOfUser(username);
+	}
 }
