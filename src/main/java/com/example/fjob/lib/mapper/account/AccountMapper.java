@@ -89,11 +89,8 @@ public interface AccountMapper {
             + "last_name = #{lastName},"
             + "addr = #{addr},"
             + "phone_no = #{phoneNo},"
-            + "img = #{img},"
-            + "role = #{role},"
             + "email = #{email}, "
             + "gender = #{gender}, "
-            + "ranked = #{ranked}, "
             + "birthdate = #{birthdate, }"
             + "UPD_DATE = clock_timestamp() "
             + "WHERE user_name = #{userName}")
