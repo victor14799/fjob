@@ -1,6 +1,8 @@
 package com.example.fjob.service.service.post;
 
+import com.example.fjob.common.CommonUtils;
 import com.example.fjob.lib.component.post.PostComponent;
+import com.example.fjob.lib.dataset.post.PostAdminOverviewDataset;
 import com.example.fjob.lib.dataset.post.PostDetailDataset;
 import com.example.fjob.lib.dataset.post.PostOverviewDataset;
 import com.example.fjob.lib.dataset.post.PostParamDataset;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PostServiceImp implements PostService{
@@ -87,5 +90,15 @@ public class PostServiceImp implements PostService{
     @Override
     public List<PostOverviewDataset> searchPost(String title, String status, String tag) {
         return component.searchPost(title, status, tag);
+    }
+
+    /**
+     * selAdminPostOverview
+     * @return List<PostAdminOverviewDataset>
+     */
+    @Override
+    public List<PostAdminOverviewDataset> selAdminPostOverview() {
+        List<PostAdminOverviewDataset> results = component.selAdminOverview();
+        return results;
     }
 }

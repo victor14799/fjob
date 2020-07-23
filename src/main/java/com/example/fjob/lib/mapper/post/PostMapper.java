@@ -1,5 +1,6 @@
 package com.example.fjob.lib.mapper.post;
 
+import com.example.fjob.lib.dataset.post.PostAdminOverviewDataset;
 import com.example.fjob.lib.dataset.post.PostDetailDataset;
 import com.example.fjob.lib.dataset.post.PostOverviewDataset;
 import com.example.fjob.lib.dataset.post.PostParamDataset;
@@ -96,4 +97,19 @@ public interface PostMapper {
             "WHERE POST_ID = #{postId} " +
             "AND USER_NAME = #{username}")
     int updPost(PostParamDataset paramDataset);
+
+    @Select("SELECT T0.POST_ID AS id,  " +
+            "   T1.FIRST_NAME || ' ' || T1.LAST_NAME AS owner,  " +
+            "   T0.TITLE AS title,  " +
+            "   T0.BUDGET AS budget,  " +
+            "   (SELECT COUNT(0)   " +
+            "   FROM BID   " +
+            "   WHERE POST_ID = T0.POST_ID) AS comment," +
+            "   T0.INS_DATE AS date,  " +
+            "   T0.STATUS AS status  " +
+            "FROM POST T0 " +
+            "INNER JOIN ACCOUNT T1  " +
+            "ON T1.USER_NAME = T0.USER_NAME " +
+            "ORDER BY T0.INS_DATE DESC ")
+    List<PostAdminOverviewDataset> selAdminOverview();
 }

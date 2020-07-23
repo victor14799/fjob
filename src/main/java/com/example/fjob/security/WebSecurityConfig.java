@@ -14,9 +14,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
-import static com.example.fjob.security.SecurityConstants.GET_SKILL_URL;
-import static com.example.fjob.security.SecurityConstants.SIGN_UP_URL;
-
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -31,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().authorizeRequests()
-				.antMatchers( "/fjob/v1/user/admin/**").authenticated()
+				.antMatchers( "/fjob/v1/admin/**").authenticated()
 				.anyRequest().permitAll()
 				.and()
 				.addFilter(new JWTAuthenticationFilter(authenticationManager()))

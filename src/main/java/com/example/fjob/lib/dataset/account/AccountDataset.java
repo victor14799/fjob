@@ -16,6 +16,15 @@ public class AccountDataset {
     private String role;
     private String balance;
     private String gender;
+	private String active;
+
+	public String getActive() {
+		return active;
+	}
+
+	public void setActive(String active) {
+		this.active = active;
+	}
 
     public String getGender() {
         return gender;
@@ -93,9 +102,9 @@ public class AccountDataset {
         return img;
     }
 
-    public void setImg(String img) {
-        this.img = img;
-    }
+	public void setImg(String img) {
+		this.img = img;
+	}
 
     public String getIsStudent() {
         return isStudent;

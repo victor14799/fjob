@@ -1,6 +1,7 @@
 package com.example.fjob.lib.component.post;
 
 import com.example.fjob.common.CommonUtils;
+import com.example.fjob.lib.dataset.post.PostAdminOverviewDataset;
 import com.example.fjob.lib.mapper.post.PostMapper;
 import com.example.fjob.lib.dataset.post.PostDetailDataset;
 import com.example.fjob.lib.dataset.post.PostOverviewDataset;
@@ -162,5 +163,14 @@ public class PostComponentImp implements PostComponent {
             }
         }
         return results;
+    }
+
+    /**
+     * selAdminOverview
+     * @return List<PostAdminOverviewDataset>
+     */
+    @Override
+    public List<PostAdminOverviewDataset> selAdminOverview() {
+        return mapper.selAdminOverview();
     }
 }

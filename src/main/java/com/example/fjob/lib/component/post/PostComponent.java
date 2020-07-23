@@ -1,5 +1,6 @@
 package com.example.fjob.lib.component.post;
 
+import com.example.fjob.lib.dataset.post.PostAdminOverviewDataset;
 import com.example.fjob.lib.dataset.post.PostDetailDataset;
 import com.example.fjob.lib.dataset.post.PostOverviewDataset;
 import com.example.fjob.lib.dataset.post.PostParamDataset;
@@ -55,4 +56,6 @@ public interface PostComponent {
      * @return List<PostOverviewDataset>
      */
     List<PostOverviewDataset> searchPost(String title, String status, String tag);
+
+    List<PostAdminOverviewDataset> selAdminOverview();
 }

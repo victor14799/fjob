@@ -13,8 +13,8 @@ import com.example.fjob.lib.mapper.account.AccountMapper;
 @Component
 public class AccountComponentImp implements AccountComponent {
 
-    AccountMapper mapper;
-    OTPComponent otpComponent;
+    private AccountMapper mapper;
+    private OTPComponent otpComponent;
 
     @Autowired
     public AccountComponentImp(AccountMapper mapper, OTPComponent otpComponent) {
@@ -35,6 +35,11 @@ public class AccountComponentImp implements AccountComponent {
     @Override
     public int disableAccount(String username) {
         return mapper.disableAccount(username);
+    }
+
+    @Override
+    public int enableAccount(String userName) {
+        return mapper.enableAccount(userName);
     }
 
     //reset password
