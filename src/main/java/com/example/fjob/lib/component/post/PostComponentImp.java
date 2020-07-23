@@ -165,6 +165,10 @@ public class PostComponentImp implements PostComponent {
         return results;
     }
 
+    /**
+     * selAdminOverview
+     * @return List<PostAdminOverviewDataset>
+     */
     @Override
     public List<PostAdminOverviewDataset> selAdminOverview() {
         return mapper.selAdminOverview();

@@ -15,6 +15,15 @@ public class AccountDataset {
 	private String role;
 	private String balance;
 	private String gender;
+	private String active;
+
+	public String getActive() {
+		return active;
+	}
+
+	public void setActive(String active) {
+		this.active = active;
+	}
 
 	public String getGender() {
 		return gender;

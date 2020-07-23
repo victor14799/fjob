@@ -19,6 +19,8 @@ public interface AccountService {
 
     int disableAccount(String username);
 
+    int enableAccount(String userName);
+
 //reset password
 
     int resetPassword(AccountDataset account);

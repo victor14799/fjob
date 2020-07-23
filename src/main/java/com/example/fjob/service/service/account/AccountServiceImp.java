@@ -15,7 +15,7 @@ import com.example.fjob.lib.dataset.otp.OTPDataset;
 @Service
 public class AccountServiceImp implements AccountService {
 
-    AccountComponent component;
+    private AccountComponent component;
 
     @Autowired
     public AccountServiceImp(AccountComponent component) {
@@ -35,6 +35,11 @@ public class AccountServiceImp implements AccountService {
     @Override
     public int disableAccount(String username) {
         return component.disableAccount(username);
+    }
+
+    @Override
+    public int enableAccount(String userName) {
+        return component.enableAccount(userName);
     }
 
     //reset password

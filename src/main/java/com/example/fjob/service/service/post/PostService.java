@@ -63,5 +63,10 @@ public interface PostService {
      */
     List<PostOverviewDataset> searchPost(String title, String status, String tag);
 
+    /**
+     * selAdminPostOverview
+     *
+     * @return List<PostAdminOverviewDataset>
+     */
     List<PostAdminOverviewDataset> selAdminPostOverview();
 }
