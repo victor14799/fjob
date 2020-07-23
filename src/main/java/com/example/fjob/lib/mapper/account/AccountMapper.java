@@ -91,7 +91,10 @@ public interface AccountMapper {
             + "phone_no = #{phoneNo},"
             + "img = #{img},"
             + "role = #{role},"
-            + "email = #{email},"
+            + "email = #{email}, "
+            + "gender = #{gender}, "
+            + "ranked = #{ranked}, "
+            + "birthdate = #{birthdate, }"
             + "UPD_DATE = clock_timestamp() "
             + "WHERE user_name = #{userName}")
     int updateProfile(AccountDataset account);
