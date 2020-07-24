@@ -5,6 +5,7 @@ public class UserSignUpParamDataset {
     private String password;
     private String address;
     private String firstName;
+    private String imageUrl;
     private String lastName;
     private String email;
     private String phoneNo;
@@ -90,5 +91,12 @@ public class UserSignUpParamDataset {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
