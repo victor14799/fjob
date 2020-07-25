@@ -84,7 +84,7 @@ public class PostDetailDataset {
     }
 
     public String getBudget() {
-        return CommonUtils.formatMoney(this.budget);
+        return this.budget;
     }
 
     public void setBudget(String budget) {
