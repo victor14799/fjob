@@ -45,7 +45,7 @@ public class PostController {
         return service.delPost(postId);
     }
 
-    @PutMapping("/{postId}/upd")
+    @RequestMapping(value = "/{postId}/upd", method = RequestMethod.PUT)
     public boolean updPost( @PathVariable("postId") String postId, @RequestBody  PostParamDataset paramDataset){
         return service.updPost(paramDataset);
     }
