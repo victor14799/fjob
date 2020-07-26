@@ -112,4 +112,11 @@ public interface PostMapper {
             "ON T1.USER_NAME = T0.USER_NAME " +
             "ORDER BY T0.INS_DATE DESC ")
     List<PostAdminOverviewDataset> selAdminOverview();
+
+    @Update("UPDATE POST " +
+            "SET STATUS = #{status}, " +
+            "UPD_DATE = CURRENT_TIMESTAMP " +
+            "WHERE POST_ID = #{postId}  " +
+            "AND USER_NAME = #{userName} ")
+    void updatePostStatus(@Param("postId") String postId, @Param("userName") String userName, @Param("status") String status);
 }

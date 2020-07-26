@@ -171,4 +171,16 @@ public class PostComponentImp implements PostComponent {
     public List<PostAdminOverviewDataset> selAdminOverview() {
         return mapper.selAdminOverview();
     }
+
+    /**
+     * updatePostStatus
+     *
+     * @param userName
+     * @param postId
+     * @param status
+     */
+    @Override
+    public void updatePostStatus(String userName, String postId, String status) {
+        mapper.updatePostStatus(postId,userName,status);
+    }
 }

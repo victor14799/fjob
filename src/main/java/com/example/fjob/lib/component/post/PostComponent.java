@@ -57,5 +57,17 @@ public interface PostComponent {
      */
     List<PostOverviewDataset> searchPost(String title, String status, String tag);
 
+    /**
+     *
+     * @return
+     */
     List<PostAdminOverviewDataset> selAdminOverview();
+
+    /**
+     * updatePostStatus
+     * @param userName
+     * @param postId
+     * @param status
+     */
+    void updatePostStatus(String userName, String postId, String status);
 }
