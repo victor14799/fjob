@@ -79,4 +79,7 @@ public interface JobHistoryMapper {
     		"	inner join account a on p.user_name = a.user_name " + 
     		"	where bid_user = #{username}")
     List<UserFeedback> selUserFeedback(@Param("username")String username);
+    
+    @Select("Select bid_user from job_history where post_id = #{post_id}")
+    String getPickUser(String postId);
 }
