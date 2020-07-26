@@ -56,4 +56,10 @@ public class BidComponentImp implements BidComponent {
     private boolean isExist(BidParamDataset paramDataset){
         return mapper.selBidUser(paramDataset) > 0;
     }
+
+	@Override
+	public CommentDataset getPickComment(String postId, String bidUser) {
+		// TODO Auto-generated method stub
+		return mapper.getPickComment(postId, bidUser);
+	}
 }

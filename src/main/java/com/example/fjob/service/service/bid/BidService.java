@@ -13,4 +13,6 @@ public interface BidService {
     boolean updateBid(BidParamDataset paramDataset);
 
     boolean delBid(BidParamDataset paramDataset);
+    
+    CommentDataset getPickComment(String postId, String bidUser);
 }

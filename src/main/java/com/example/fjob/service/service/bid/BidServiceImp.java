@@ -37,4 +37,10 @@ public class BidServiceImp implements BidService{
     public boolean delBid(BidParamDataset paramDataset) {
         return component.delBid(paramDataset);
     }
+
+	@Override
+	public CommentDataset getPickComment(String postId, String bidUser) {
+		// TODO Auto-generated method stub
+		return component.getPickComment(postId, bidUser);
+	}
 }

@@ -3,6 +3,8 @@ package com.example.fjob.service.controller.bid;
 import com.example.fjob.lib.dataset.bid.BidParamDataset;
 import com.example.fjob.lib.dataset.bid.CommentDataset;
 import com.example.fjob.service.service.bid.BidService;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,5 +38,10 @@ public class BidController {
     @RequestMapping(value ="/{postId}/delBid", method = RequestMethod.DELETE)
     public boolean delBid(@RequestBody BidParamDataset paramDataset) {
         return service.delBid(paramDataset);
+    }
+    
+    @GetMapping("/pick")
+    public CommentDataset getPickComment(@RequestParam("postId") String postId, @RequestParam("bidUser") String bidUser){
+        return service.getPickComment(postId, bidUser);
     }
 }

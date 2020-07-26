@@ -63,4 +63,17 @@ public interface BidMapper {
             " ON T0.BID_USER  = T1.USER_NAME  " +
             " WHERE POST_ID = #{postId} ")
     List<CommentDataset> selComment(@Param("postId") String postId);
+    
+    @Select("SELECT  " +
+            " T0.BID_USER AS bidUser,  " +
+            " T1.LAST_NAME || ' ' || T1.FIRST_NAME AS fullName, " +
+            " COALESCE(T1.IMG,'') AS img, " +
+            " T0.PRICE AS price, " +
+            " T0.DUE_DATE AS dueDate, " +
+            " T0.INS_DATE AS insDate" +
+            " FROM BID T0 " +
+            " INNER JOIN ACCOUNT T1 " +
+            " ON T0.BID_USER  = T1.USER_NAME  " +
+            " WHERE POST_ID = #{postId}  AND  T0.BID_USER = #{bidUser}")
+    CommentDataset getPickComment(@Param("postId") String postId, @Param("bidUser") String bidUser);
 }
