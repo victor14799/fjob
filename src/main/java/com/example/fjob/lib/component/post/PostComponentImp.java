@@ -15,166 +15,171 @@ import java.util.stream.Collectors;
 
 @Component
 public class PostComponentImp implements PostComponent {
-    private PostMapper mapper;
+	private PostMapper mapper;
 
-    private final String STATUS_OPEN_STR = "0";
+	private final String STATUS_OPEN_STR = "0";
 
+	@Autowired
+	public PostComponentImp(PostMapper mapper) {
+		this.mapper = mapper;
+	}
 
-    @Autowired
-    public PostComponentImp(PostMapper mapper) {
-        this.mapper = mapper;
-    }
+	/**
+	 * insPost
+	 *
+	 * @param paramDataset
+	 * @return
+	 */
+	@Override
+	public boolean insPost(PostParamDataset paramDataset) {
+		if (paramDataset.getPostId() == null || paramDataset.getPostId().isEmpty()) {
+			String postId = CommonUtils.randomID();
+			if (postId.isEmpty()) {
+				return false;
+			}
+			paramDataset.setPostId(postId);
+		}
+		if (paramDataset.getStatus() == null || paramDataset.getPostId().isEmpty()) {
+			paramDataset.setStatus(STATUS_OPEN_STR);
+		}
+		return mapper.insPost(paramDataset) > 0;
+	}
 
-    /**
-     * insPost
-     *
-     * @param paramDataset
-     * @return
-     */
-    @Override
-    public boolean insPost(PostParamDataset paramDataset) {
-        if (paramDataset.getPostId() == null || paramDataset.getPostId().isEmpty()) {
-            String postId = CommonUtils.randomID();
-            if (postId.isEmpty()) {
-                return false;
-            }
-            paramDataset.setPostId(postId);
-        }
-        if (paramDataset.getStatus() == null || paramDataset.getPostId().isEmpty()) {
-            paramDataset.setStatus(STATUS_OPEN_STR);
-        }
-        return mapper.insPost(paramDataset) > 0;
-    }
+	/**
+	 * selOverviewPost
+	 *
+	 * @return
+	 */
+	@Override
+	public List<PostOverviewDataset> selOverviewPosts() {
+		List<PostOverviewDataset> results = mapper.selOverviewPost();
+		return results;
+	}
 
-    /**
-     * selOverviewPost
-     *
-     * @return
-     */
-    @Override
-    public List<PostOverviewDataset> selOverviewPosts() {
-        List<PostOverviewDataset> results = mapper.selOverviewPost();
-        return results;
-    }
+	/**
+	 * selDetailPost
+	 *
+	 * @return PostDetailDataset
+	 */
+	@Override
+	public PostDetailDataset selDetailPost(String postId) {
+		PostDetailDataset results = mapper.selPostDetail(postId);
+		List<String> tagList = new ArrayList<>();
+		if (results.getTag() != null) {
+			if (results.getTag().trim() != "") {
+				String[] tags = results.getTag().split(",");
 
-    /**
-     * selDetailPost
-     *
-     * @return PostDetailDataset
-     */
-    @Override
-    public PostDetailDataset selDetailPost(String postId) {
-        PostDetailDataset results = mapper.selPostDetail(postId);
-        List<String> tagList = new ArrayList<>();
-        if (results.getTag() != null) {
-            if (results.getTag().trim() != "") {
-                String[] tags = results.getTag().split(",");
+				for (int i = 0; i < tags.length; i++) {
+					tagList.add(tags[i].trim());
+				}
 
-                for (int i = 0; i < tags.length; i++) {
-                    tagList.add(tags[i].trim());
-                }
+			}
 
-            }
+		}
+		results.setSkillLists(tagList);
+		return results;
+	}
 
-        }
-        results.setSkillLists(tagList);
-        return results;
-    }
+	/**
+	 * countPostByStatus
+	 *
+	 * @param status
+	 * @return
+	 */
+	@Override
+	public int countPostByStatus(String status) {
+		return mapper.countPostByStatus(status);
+	}
 
-    /**
-     * countPostByStatus
-     *
-     * @param status
-     * @return
-     */
-    @Override
-    public int countPostByStatus(String status) {
-        return mapper.countPostByStatus(status);
-    }
+	/**
+	 * delPost
+	 *
+	 * @param postId
+	 * @return
+	 */
+	@Override
+	public boolean delPost(String postId) {
+		return mapper.delPost(postId) > 0;
+	}
 
-    /**
-     * delPost
-     *
-     * @param postId
-     * @return
-     */
-    @Override
-    public boolean delPost(String postId) {
-        return mapper.delPost(postId) > 0;
-    }
+	/**
+	 * updatePost
+	 *
+	 * @param paramDataset
+	 * @return
+	 */
+	@Override
+	public boolean updatePost(PostParamDataset paramDataset) {
+		return mapper.updPost(paramDataset) > 0;
+	}
 
-    /**
-     * updatePost
-     *
-     * @param paramDataset
-     * @return
-     */
-    @Override
-    public boolean updatePost(PostParamDataset paramDataset) {
-        return mapper.updPost(paramDataset) > 0;
-    }
+	/**
+	 * searchPost
+	 *
+	 * @param title
+	 * @param status
+	 * @param tag
+	 * @return List<PostOverviewDataset>
+	 */
+	@Override
+	public List<PostOverviewDataset> searchPost(String title, String status, String tag) {
+		List<PostOverviewDataset> listAllPost = this.selOverviewPosts();
+		List<PostOverviewDataset> results = new ArrayList<>();
 
-    /**
-     * searchPost
-     *
-     * @param title
-     * @param status
-     * @param tag
-     * @return List<PostOverviewDataset>
-     */
-    @Override
-    public List<PostOverviewDataset> searchPost(String title, String status, String tag) {
-        List<PostOverviewDataset> listAllPost = this.selOverviewPosts();
-        List<PostOverviewDataset> results = new ArrayList<>();
+		if (title != null && !title.isEmpty()) {
+			results = listAllPost.stream()
+					.filter(index -> index.getTitle().toLowerCase().contains(title.trim().toLowerCase()))
+					.collect(Collectors.toList());
+			if (results != null && !results.isEmpty()) {
+				if (status != null && !status.isEmpty()) {
+					results = results.stream().filter(index -> index.getStatus().contains(status))
+							.collect(Collectors.toList());
+				}
+				if (tag != null && !tag.isEmpty()) {
+					if (tag.contains(",")) {
+						String[] tags = tag.split(",");
+						for (String value : tags) {
+							results = results.stream()
+									.filter((index -> index.getTag() != null && index.getTag().contains(value.trim())))
+									.collect(Collectors.toList());
+						}
+					} else {
+						results = results.stream()
+								.filter((index -> index.getTag() != null && index.getTag().contains(tag)))
+								.collect(Collectors.toList());
+					}
 
-        if (title != null && !title.isEmpty()) {
-            results = listAllPost
-                    .stream()
-                    .filter(index ->
-                            index.getTitle().toLowerCase().contains(title.trim().toLowerCase()))
-                    .collect(Collectors.toList());
-            if (results != null && !results.isEmpty()) {
-                if (status != null && !status.isEmpty()) {
-                    results = results
-                            .stream()
-                            .filter(index -> index.getStatus().contains(status))
-                            .collect(Collectors.toList());
-                }
-                if (tag != null && !tag.isEmpty()) {
-                	if (tag.contains(",")) {
-                		String[] tags = tag.split(",");
-                		for (String value : tags) {
-                			results = results
-                                    .stream()
-                                    .filter((index -> index.getTag() != null && index.getTag().contains(value.trim())))
-                                    .collect(Collectors.toList());
-                		}
-                	} else {
-                		results = results
-                                .stream()
-                                .filter((index -> index.getTag() != null && index.getTag().contains(tag)))
-                                .collect(Collectors.toList());
-                	}
-                	
-                    
-                }
-            }
-        }
-        return results;
-    }
+				}
+			}
+		}
+		return results;
+	}
 
-    /**
-     * selAdminOverview
-     * @return List<PostAdminOverviewDataset>
-     */
-    @Override
-    public List<PostAdminOverviewDataset> selAdminOverview() {
-        return mapper.selAdminOverview();
-    }
+	/**
+	 * selAdminOverview
+	 * 
+	 * @return List<PostAdminOverviewDataset>
+	 */
+	@Override
+	public List<PostAdminOverviewDataset> selAdminOverview() {
+		return mapper.selAdminOverview();
+	}
 
 	@Override
 	public List<PostOverviewDataset> getUserPost(String username) {
 		// TODO Auto-generated method stub
 		return mapper.getUserPost(username);
+	}
+
+	/**
+	 * updatePostStatus
+	 *
+	 * @param userName
+	 * @param postId
+	 * @param status
+	 */
+	@Override
+	public void updatePostStatus(String userName, String postId, String status) {
+		mapper.updatePostStatus(postId, userName, status);
 	}
 }

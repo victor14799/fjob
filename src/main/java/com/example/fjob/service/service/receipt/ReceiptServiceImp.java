@@ -1,6 +1,7 @@
 package com.example.fjob.service.service.receipt;
 
 import com.example.fjob.lib.component.account.AccountComponent;
+import com.example.fjob.lib.component.post.PostComponent;
 import com.example.fjob.lib.component.receipt.ReceiptComponent;
 import com.example.fjob.lib.dataset.account.AccountDataset;
 import com.example.fjob.lib.dataset.receipt.ReceiptDataset;
@@ -14,10 +15,13 @@ public class ReceiptServiceImp implements ReceiptService {
 
     private AccountComponent accountComponent;
 
+    private PostComponent postComponent;
+
     @Autowired
-    public ReceiptServiceImp(ReceiptComponent receiptComponent, AccountComponent accountComponent) {
+    public ReceiptServiceImp(ReceiptComponent receiptComponent, AccountComponent accountComponent, PostComponent postComponent) {
         this.receiptComponent = receiptComponent;
         this.accountComponent = accountComponent;
+        this.postComponent = postComponent;
     }
 
 
@@ -37,11 +41,17 @@ public class ReceiptServiceImp implements ReceiptService {
                     //Convert double to String
                     String balanceStr = "" + newBalance;
 
-                    return accountComponent.updateBalance(balanceStr, receiptDataset.getUserName()) > 0;
+                    boolean updateSuccess = accountComponent.updateBalance(balanceStr, receiptDataset.getUserName()) > 0;
+
+                    //Closed post
+                    postComponent.updatePostStatus(receiptDataset.getUserName(), receiptDataset.getJobId(), "2");
+                    return updateSuccess;
                 }
                 return false;
             }
         }
+        //Closed post
+        postComponent.updatePostStatus(receiptDataset.getUserName(), receiptDataset.getJobId(), "2");
         return result;
     }
 }

@@ -14,6 +14,7 @@ public class ReceiptDataset {
     private String jobId;
     private String payment;
 
+
     public String getReceiptId() {
         return receiptId;
     }
