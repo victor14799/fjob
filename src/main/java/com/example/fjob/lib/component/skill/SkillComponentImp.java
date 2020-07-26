@@ -27,4 +27,9 @@ public class SkillComponentImp implements SkillComponent{
 		
 		return mapper.getSkillOfUser(username);
 	}
+
+    @Override
+    public int updateSkill(UserSkill userSkill,String newSkillId) {
+        return mapper.updateSkill(userSkill,newSkillId);
+    }
 }

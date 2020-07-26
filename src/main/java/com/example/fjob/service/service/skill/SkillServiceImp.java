@@ -29,4 +29,9 @@ public class SkillServiceImp implements SkillService {
 		// TODO Auto-generated method stub
 		return component.getSkillOfUser(username);
 	}
+
+    @Override
+    public int updateSkill(UserSkill userSkill,String newSkillId) {
+        return component.updateSkill(userSkill,newSkillId);
+    }
 }

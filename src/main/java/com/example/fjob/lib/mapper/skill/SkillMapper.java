@@ -6,6 +6,7 @@ import com.example.fjob.lib.dataset.skill.UserSkill;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -29,4 +30,11 @@ public interface SkillMapper {
     		"inner join skill_category as T01 using(skill_id) " + 
     		"where hs.user_name = #{username}")
     List<UserSkill> getSkillOfUser(@Param("username") String username);
+
+    @Update("UPDATE has_skill " +
+			"SET skill_id = #{newSkillId}," +
+			"experience = #{userSkill.experience} " +
+			"WHERE user_name = #{userSkill.username} " +
+			"and skill_id = #{userSkill.skillId}")
+	int updateSkill(@Param("userSkill") UserSkill userSkill,@Param("newSkillId") String newSkillId);
 }

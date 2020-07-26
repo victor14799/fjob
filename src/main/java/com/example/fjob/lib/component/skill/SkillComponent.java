@@ -8,4 +8,5 @@ import java.util.List;
 public interface SkillComponent {
     List<SkillDataset> getListSkill();
     List<UserSkill> getSkillOfUser(String username);
+    int updateSkill(UserSkill userSkill,String newSkillId);
 }

@@ -4,10 +4,7 @@ import com.example.fjob.lib.dataset.skill.SkillDataset;
 import com.example.fjob.lib.dataset.skill.UserSkill;
 import com.example.fjob.service.service.skill.SkillService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +27,9 @@ public class SkillController {
     @GetMapping("/{username}")
     public List<UserSkill> selUserSkill(@PathVariable("username") String username){
         return service.getSkillOfUser(username);
+    }
+    @PutMapping("/updateSkill")
+    public int updateSkill(@RequestBody UserSkill userSkill,@RequestParam("newSkillId") String newSkillId){
+        return service.updateSkill(userSkill,newSkillId);
     }
 }
