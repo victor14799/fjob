@@ -53,6 +53,18 @@ public class BidComponentImp implements BidComponent {
         return false;
     }
 
+    /**
+     * postId
+     *
+     * @param postId
+     * @param bidUser
+     * @return String
+     */
+    @Override
+    public String selPrice(String postId, String bidUser) {
+        return mapper.selPrice(postId,bidUser);
+    }
+
     private boolean isExist(BidParamDataset paramDataset){
         return mapper.selBidUser(paramDataset) > 0;
     }

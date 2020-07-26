@@ -37,4 +37,12 @@ public interface BidComponent {
      * @return
      */
     boolean delBid(BidParamDataset paramDataset);
+
+    /**
+     * postId
+     * @param postId
+     * @param bidUser
+     * @return String
+     */
+    String selPrice(String postId, String bidUser);
 }

@@ -1,6 +1,7 @@
 package com.example.fjob.service.service.receipt;
 
 import com.example.fjob.lib.component.account.AccountComponent;
+import com.example.fjob.lib.component.bid.BidComponent;
 import com.example.fjob.lib.component.jobhistory.JobHistoryComponent;
 import com.example.fjob.lib.component.post.PostComponent;
 import com.example.fjob.lib.component.receipt.ReceiptComponent;
@@ -21,15 +22,19 @@ public class ReceiptServiceImp implements ReceiptService {
 
     private JobHistoryComponent jobHistoryComponent;
 
+    private BidComponent bidComponent;
+
     @Autowired
     public ReceiptServiceImp(ReceiptComponent receiptComponent,
                              AccountComponent accountComponent,
                              PostComponent postComponent,
-                             JobHistoryComponent jobHistoryComponent) {
+                             JobHistoryComponent jobHistoryComponent,
+                             BidComponent bidComponent) {
         this.receiptComponent = receiptComponent;
         this.accountComponent = accountComponent;
         this.postComponent = postComponent;
         this.jobHistoryComponent = jobHistoryComponent;
+        this.bidComponent = bidComponent;
     }
 
 
@@ -40,7 +45,8 @@ public class ReceiptServiceImp implements ReceiptService {
             JobParamDataset job = new JobParamDataset();
             job.setPostId(receiptDataset.getJobId());
             job.setBidUser(receiptDataset.getBidUserName());
-            job.setPrice(receiptDataset.getFee());
+            String price = bidComponent.selPrice(receiptDataset.getJobId(),receiptDataset.getBidUserName());
+            job.setPrice(price);
             // Job is in progress
             job.setStatus("0");
             // No feedback
@@ -82,6 +88,7 @@ public class ReceiptServiceImp implements ReceiptService {
                     return accountComponent.updateBalance(balanceStr, receiptDataset.getUserName()) > 0;
                 }
             }
+
 
             //Create new job for account
             jobHistoryComponent.addJob(job);

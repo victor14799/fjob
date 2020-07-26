@@ -45,7 +45,8 @@ public interface JobHistoryMapper {
             "(POST_ID, " +
             "BID_USER, " +
             "PRICE, " +
-            "STATUS, " +
+            "STATUS," +
+            "FEEDBACK, " +
             "INS_DATE, " +
             "UPD_DATE) " +
             "   VALUES" +
@@ -53,6 +54,7 @@ public interface JobHistoryMapper {
             "#{bidUser}, " +
             "#{price} , " +
             "#{status} , " +
+            "#{feedback} ," +
             "CURRENT_TIMESTAMP, " +
             "CURRENT_TIMESTAMP) ")
     int addJob(JobParamDataset paramDataset);
