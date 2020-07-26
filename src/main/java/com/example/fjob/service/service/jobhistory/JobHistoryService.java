@@ -1,5 +1,6 @@
 package com.example.fjob.service.service.jobhistory;
 
+import com.example.fjob.lib.dataset.account.AccountDataset;
 import com.example.fjob.lib.dataset.jobhistory.JobHistoryDataset;
 import com.example.fjob.lib.dataset.jobhistory.JobParamDataset;
 import com.example.fjob.lib.dataset.jobhistory.UserFeedback;
@@ -16,4 +17,5 @@ public interface JobHistoryService {
     
     List<UserFeedback> getUserFeedback(String username);
     List<JobHistoryDataset> getUserJobHistory(String username);
+    AccountDataset getPickUser(String postId);
 }

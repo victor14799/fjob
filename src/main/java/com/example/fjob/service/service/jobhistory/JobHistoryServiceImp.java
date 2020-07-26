@@ -1,6 +1,7 @@
 package com.example.fjob.service.service.jobhistory;
 
 import com.example.fjob.lib.component.jobhistory.JobHistoryComponent;
+import com.example.fjob.lib.dataset.account.AccountDataset;
 import com.example.fjob.lib.dataset.jobhistory.JobHistoryDataset;
 import com.example.fjob.lib.dataset.jobhistory.JobParamDataset;
 import com.example.fjob.lib.dataset.jobhistory.UserFeedback;
@@ -45,5 +46,10 @@ public class JobHistoryServiceImp implements  JobHistoryService{
 	public List<JobHistoryDataset> getUserJobHistory(String username) {
 		// TODO Auto-generated method stub
 		return component.getUserJobHistory(username);
+	}
+	@Override
+	public AccountDataset getPickUser(String postId) {
+		// TODO Auto-generated method stub
+		return component.getPickUser(postId);
 	}
 }

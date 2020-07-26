@@ -1,5 +1,6 @@
 package com.example.fjob.service.controller.jobhistory;
 
+import com.example.fjob.lib.dataset.account.AccountDataset;
 import com.example.fjob.lib.dataset.jobhistory.JobHistoryDataset;
 import com.example.fjob.lib.dataset.jobhistory.JobParamDataset;
 import com.example.fjob.lib.dataset.jobhistory.UserFeedback;
@@ -34,5 +35,10 @@ public class JobHistoryController {
     @GetMapping("/feedbacks/{username}")
     List<UserFeedback> getUseFeedback(@PathVariable("username") String username){
         return service.getUserFeedback(username);
+    }
+    
+    @GetMapping("/pick/{postId}")
+    AccountDataset getPickUser(@PathVariable("postId") String postId){
+        return service.getPickUser(postId);
     }
 }
