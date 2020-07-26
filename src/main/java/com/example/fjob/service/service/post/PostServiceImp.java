@@ -101,4 +101,10 @@ public class PostServiceImp implements PostService{
         List<PostAdminOverviewDataset> results = component.selAdminOverview();
         return results;
     }
+
+	@Override
+	public List<PostOverviewDataset> getUserPost(String username) {
+		// TODO Auto-generated method stub
+		return component.getUserPost(username);
+	}
 }

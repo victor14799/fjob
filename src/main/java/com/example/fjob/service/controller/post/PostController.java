@@ -34,6 +34,11 @@ public class PostController {
     public PostDetailDataset getPostDetail(@PathVariable("postId") String postId){
         return service.getPostDetail(postId);
     }
+    
+    @GetMapping("/user/{username}")
+    public List<PostOverviewDataset> getUserPost(@PathVariable("username") String username){
+        return service.getUserPost(username);
+    }
 
     @GetMapping("/count")
     public int countPost(@RequestParam("status") String status){

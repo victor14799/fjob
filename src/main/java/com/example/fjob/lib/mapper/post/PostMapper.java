@@ -112,4 +112,23 @@ public interface PostMapper {
             "ON T1.USER_NAME = T0.USER_NAME " +
             "ORDER BY T0.INS_DATE DESC ")
     List<PostAdminOverviewDataset> selAdminOverview();
+    
+    @Select("SELECT " +
+            "	T0.POST_ID AS postID,   " +
+            "	T1.LAST_NAME || ' ' || T1.FIRST_NAME  AS fullName,   "
+            + "	T0.USER_NAME AS userName," +
+            "	T0.TITLE AS title,   " +
+            "	T0.CONTENT AS content,  " +
+            "	T0.BUDGET AS budget,   " +
+            "	T0.TAG AS tag,   " +
+            "	T0.STATUS AS status,   " +
+            "	T0.INS_DATE AS insDate " +
+            "	FROM POST T0  " +
+            "	INNER JOIN ACCOUNT T1  " +
+            "ON " +
+            "   T1.USER_NAME = T0.USER_NAME   "
+            + "	Where T0.USER_NAME = #{username}	" +
+            "	ORDER BY " +
+            "   T0.INS_DATE DESC")
+    List<PostOverviewDataset> getUserPost(@Param("username")String username);
 }

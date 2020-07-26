@@ -69,4 +69,6 @@ public interface PostService {
      * @return List<PostAdminOverviewDataset>
      */
     List<PostAdminOverviewDataset> selAdminPostOverview();
+    
+    List<PostOverviewDataset> getUserPost(String username);
 }

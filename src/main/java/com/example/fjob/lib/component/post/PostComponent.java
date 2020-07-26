@@ -58,4 +58,6 @@ public interface PostComponent {
     List<PostOverviewDataset> searchPost(String title, String status, String tag);
 
     List<PostAdminOverviewDataset> selAdminOverview();
+    
+    List<PostOverviewDataset> getUserPost(String username);
 }

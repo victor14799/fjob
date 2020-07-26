@@ -171,4 +171,10 @@ public class PostComponentImp implements PostComponent {
     public List<PostAdminOverviewDataset> selAdminOverview() {
         return mapper.selAdminOverview();
     }
+
+	@Override
+	public List<PostOverviewDataset> getUserPost(String username) {
+		// TODO Auto-generated method stub
+		return mapper.getUserPost(username);
+	}
 }
