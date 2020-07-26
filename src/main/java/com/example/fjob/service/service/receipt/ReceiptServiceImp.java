@@ -1,9 +1,11 @@
 package com.example.fjob.service.service.receipt;
 
 import com.example.fjob.lib.component.account.AccountComponent;
+import com.example.fjob.lib.component.jobhistory.JobHistoryComponent;
 import com.example.fjob.lib.component.post.PostComponent;
 import com.example.fjob.lib.component.receipt.ReceiptComponent;
 import com.example.fjob.lib.dataset.account.AccountDataset;
+import com.example.fjob.lib.dataset.jobhistory.JobParamDataset;
 import com.example.fjob.lib.dataset.receipt.ReceiptDataset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +19,17 @@ public class ReceiptServiceImp implements ReceiptService {
 
     private PostComponent postComponent;
 
+    private JobHistoryComponent jobHistoryComponent;
+
     @Autowired
-    public ReceiptServiceImp(ReceiptComponent receiptComponent, AccountComponent accountComponent, PostComponent postComponent) {
+    public ReceiptServiceImp(ReceiptComponent receiptComponent,
+                             AccountComponent accountComponent,
+                             PostComponent postComponent,
+                             JobHistoryComponent jobHistoryComponent) {
         this.receiptComponent = receiptComponent;
         this.accountComponent = accountComponent;
         this.postComponent = postComponent;
+        this.jobHistoryComponent = jobHistoryComponent;
     }
 
 
@@ -29,6 +37,17 @@ public class ReceiptServiceImp implements ReceiptService {
     public boolean createNewReceipt(ReceiptDataset receiptDataset) {
         boolean result = receiptComponent.insReceipt(receiptDataset);
         if (result) {
+            JobParamDataset job = new JobParamDataset();
+            job.setPostId(receiptDataset.getJobId());
+            job.setBidUser(receiptDataset.getBidUserName());
+            job.setPrice(receiptDataset.getFee());
+            // Job is in progress
+            job.setStatus("0");
+            // No feedback
+            job.setFeedback("0");
+            // No comment
+            job.setComment("");
+
             AccountDataset user = accountComponent.getAllInfor(receiptDataset.getUserName());
             if (receiptDataset.getPayment().equals("wallet")) {
 
@@ -42,13 +61,13 @@ public class ReceiptServiceImp implements ReceiptService {
                     //Convert double to String
                     String balanceStr = "" + newBalance;
 
-                    boolean updateSuccess = accountComponent.updateBalance(balanceStr, receiptDataset.getUserName()) > 0;
+                    //Update account balance
+                    accountComponent.updateBalance(balanceStr, receiptDataset.getUserName());
 
                     //Closed post
                     postComponent.updatePostStatus(receiptDataset.getUserName(), receiptDataset.getJobId(), "2");
-                    return updateSuccess;
+
                 }
-                return false;
             } else if (receiptDataset.getPayment().equals("add")) {
                 if (user != null) {
                     // Convert fee to double
@@ -63,9 +82,13 @@ public class ReceiptServiceImp implements ReceiptService {
                     return accountComponent.updateBalance(balanceStr, receiptDataset.getUserName()) > 0;
                 }
             }
+
+            //Create new job for account
+            jobHistoryComponent.addJob(job);
+            //Closed post
+            postComponent.updatePostStatus(receiptDataset.getUserName(), receiptDataset.getJobId(), "2");
         }
-        //Closed post
-        postComponent.updatePostStatus(receiptDataset.getUserName(), receiptDataset.getJobId(), "2");
+
         return result;
     }
 }
