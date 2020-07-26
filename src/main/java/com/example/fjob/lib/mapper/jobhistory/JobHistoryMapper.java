@@ -25,6 +25,21 @@ public interface JobHistoryMapper {
             "   ON T0.POST_ID = T1.POST_ID " +
             "WHERE BID_USER = #{bidUser}")
     List<JobHistoryDataset> getJobHistory(@Param("bidUser" ) String bidUser);
+    
+    @Select("SELECT " +
+            "  T1.TITLE AS title,  " +
+            "  T1.USER_NAME AS userName,  " +
+            "  T0.PRICE  AS price,  " +
+            "  T0.FEEDBACK AS feedback,  " +
+            "  T0.COMMENT AS comment,  " +
+            "  T0.STATUS AS status,  " +
+            "  T1.START_DATE AS startDate,  " +
+            "  T1.END_DATE AS endDate  " +
+            "FROM JOB_HISTORY T0  " +
+            "INNER JOIN POST T1  " +
+            "   ON T0.POST_ID = T1.POST_ID " +
+            "WHERE T1.USER_NAME = #{username}")
+    List<JobHistoryDataset> getUserJobHistory(@Param("username" ) String username);
 
     @Insert("INSERT INTO JOB_HISTORY " +
             "(POST_ID, " +

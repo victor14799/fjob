@@ -41,4 +41,9 @@ public class JobHistoryServiceImp implements  JobHistoryService{
 		// TODO Auto-generated method stub
 		return component.getUserFeedback(username);
 	}
+	@Override
+	public List<JobHistoryDataset> getUserJobHistory(String username) {
+		// TODO Auto-generated method stub
+		return component.getUserJobHistory(username);
+	}
 }

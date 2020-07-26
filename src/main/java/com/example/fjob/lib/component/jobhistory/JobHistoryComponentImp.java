@@ -60,4 +60,10 @@ public class JobHistoryComponentImp implements JobHistoryComponent {
 		// TODO Auto-generated method stub
 		return mapper.selUserFeedback(username);
 	}
+
+	@Override
+	public List<JobHistoryDataset> getUserJobHistory(String username) {
+		// TODO Auto-generated method stub
+		return mapper.getUserJobHistory(username);
+	}
 }

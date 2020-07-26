@@ -15,4 +15,5 @@ public interface JobHistoryService {
     List<JobHistoryDataset> getJobHistory(String bidUser);
     
     List<UserFeedback> getUserFeedback(String username);
+    List<JobHistoryDataset> getUserJobHistory(String username);
 }

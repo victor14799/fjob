@@ -6,6 +6,8 @@ import com.example.fjob.lib.dataset.jobhistory.UserFeedback;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 public interface JobHistoryComponent {
 
     /**
@@ -30,4 +32,5 @@ public interface JobHistoryComponent {
     boolean updateFeedback(JobParamDataset paramDataset);
     
     List<UserFeedback> getUserFeedback(String username);
+    List<JobHistoryDataset> getUserJobHistory(String username);
 }

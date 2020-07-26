@@ -26,6 +26,11 @@ public class JobHistoryController {
         return service.getJobHistory(bidUser);
     }
     
+    @GetMapping("/user/{username}")
+    List<JobHistoryDataset> selUserJobHistory(@PathVariable("username") String username){
+        return service.getUserJobHistory(username);
+    }
+    
     @GetMapping("/feedbacks/{username}")
     List<UserFeedback> getUseFeedback(@PathVariable("username") String username){
         return service.getUserFeedback(username);
