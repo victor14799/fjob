@@ -29,8 +29,9 @@ public class ReceiptServiceImp implements ReceiptService {
     public boolean createNewReceipt(ReceiptDataset receiptDataset) {
         boolean result = receiptComponent.insReceipt(receiptDataset);
         if (result) {
+            AccountDataset user = accountComponent.getAllInfor(receiptDataset.getUserName());
             if (receiptDataset.getPayment().equals("wallet")) {
-                AccountDataset user = accountComponent.getAllInfor(receiptDataset.getUserName());
+
                 if (user != null) {
                     // Convert fee to double
                     double fee = Double.parseDouble(receiptDataset.getFee());
@@ -48,6 +49,19 @@ public class ReceiptServiceImp implements ReceiptService {
                     return updateSuccess;
                 }
                 return false;
+            } else if (receiptDataset.getPayment().equals("add")) {
+                if (user != null) {
+                    // Convert fee to double
+                    double amount = Double.parseDouble(receiptDataset.getFee());
+                    // Convert balance of account to double
+                    double accountBalance = Double.parseDouble(user.getBalance());
+                    //Update new balance minus fee
+                    double newBalance = (accountBalance + amount);
+                    //Convert double to String
+                    String balanceStr = "" + newBalance;
+
+                    return accountComponent.updateBalance(balanceStr, receiptDataset.getUserName()) > 0;
+                }
             }
         }
         //Closed post
