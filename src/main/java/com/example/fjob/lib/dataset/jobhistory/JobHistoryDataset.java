@@ -6,7 +6,13 @@ public class JobHistoryDataset {
 
 	private String title;
 
+	private String postId;
+
 	private String userName;
+
+	private String firstName;
+
+	private String lastName;
 
 	private String price;
 
@@ -16,11 +22,7 @@ public class JobHistoryDataset {
 
 	private String status;
 
-	private Date startDate;
-
-	private Date endDate;
-
-	private String postId;
+	private Date dueDate;
 
 	public String getPostId() {
 		return postId;
@@ -98,19 +100,28 @@ public class JobHistoryDataset {
 		this.status = status;
 	}
 
-	public Date getStartDate() {
-		return startDate;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public Date getEndDate() {
-		return endDate;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
+
+	public Date getDueDate() {
+		return dueDate;
+	}
+
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
+	}
+
 }
