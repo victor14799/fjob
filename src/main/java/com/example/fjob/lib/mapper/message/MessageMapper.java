@@ -16,7 +16,7 @@ public interface MessageMapper {
 
 	@Select(" SELECT " + "	mess_id as id, " + "	username, " + "	title, " + "	body, " + "	payload, " + "	seen_flg, "
 			+ "	ins_date, "
-			+ "	add_username, img " + " FROM message " + " WHERE username = #{username} ")
+			+ "	add_username, img " + " FROM message " + " WHERE username = #{username} Order by ins_date DESC")
 	List<Message> getMessage(@Param("username") String username);
 
 	@Update("UPDATE message " + "set seen_flg=#{seen_flg} " + "WHERE mess_id= #{id}" + "AND username = #{username}")
