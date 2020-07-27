@@ -52,4 +52,9 @@ public class JobHistoryServiceImp implements  JobHistoryService{
 		// TODO Auto-generated method stub
 		return component.getPickUser(postId);
 	}
+	@Override
+	public boolean updateFeedback(JobParamDataset paramDataset) {
+		// TODO Auto-generated method stub
+		return component.updateFeedback(paramDataset);
+	}
 }

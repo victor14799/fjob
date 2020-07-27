@@ -41,4 +41,10 @@ public class JobHistoryController {
     AccountDataset getPickUser(@PathVariable("postId") String postId){
         return service.getPickUser(postId);
     }
+    
+    
+    @PutMapping("/update")
+    boolean updateFeedback(@RequestBody JobParamDataset paramDataset){
+        return service.updateFeedback(paramDataset);
+    }
 }
