@@ -18,4 +18,6 @@ public interface JobHistoryService {
     List<UserFeedback> getUserFeedback(String username);
     List<JobHistoryDataset> getUserJobHistory(String username);
     AccountDataset getPickUser(String postId);
+    
+    boolean updateFeedback(JobParamDataset paramDataset);
 }
