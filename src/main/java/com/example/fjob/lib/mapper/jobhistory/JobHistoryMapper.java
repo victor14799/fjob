@@ -12,7 +12,8 @@ import java.util.List;
 public interface JobHistoryMapper {
 
     @Select("SELECT " +
-            "  T1.TITLE AS title,  " +
+            "  T1.TITLE AS title,  "
+            + "	T0.POST_ID as postId,	" +
             "  T1.USER_NAME AS userName,  " +
             "  T0.PRICE  AS price,  " +
             "  T0.FEEDBACK AS feedback,  " +
@@ -27,7 +28,8 @@ public interface JobHistoryMapper {
     List<JobHistoryDataset> getJobHistory(@Param("bidUser" ) String bidUser);
     
     @Select("SELECT " +
-            "  T1.TITLE AS title,  " +
+            "  T1.TITLE AS title,  " 
+            + "	T0.POST_ID as postId,	" +
             "  T1.USER_NAME AS userName,  " +
             "  T0.PRICE  AS price,  " +
             "  T0.FEEDBACK AS feedback,  " +
