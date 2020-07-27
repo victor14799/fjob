@@ -76,4 +76,10 @@ public interface BidMapper {
             " ON T0.BID_USER  = T1.USER_NAME  " +
             " WHERE POST_ID = #{postId}  AND  T0.BID_USER = #{bidUser}")
     CommentDataset getPickComment(@Param("postId") String postId, @Param("bidUser") String bidUser);
+
+    @Select("SELECT PRICE " +
+            "FROM BID  " +
+            "WHERE BID_USER =#{bidUser} " +
+            "AND POST_ID =#{postId} ")
+    String selPrice(@Param("postId") String postId,@Param("bidUser") String bidUser );
 }
