@@ -4,99 +4,113 @@ import java.util.Date;
 
 public class JobHistoryDataset {
 
-    private String title;
+	private String title;
 
-    private String userName;
+	private String userName;
 
-    private String price;
+	private String price;
 
-    private String feedback;
+	private String feedback;
 
-    private String comment;
+	private String comment;
 
-    private String status;
+	private String status;
 
-    private Date startDate;
+	private Date startDate;
 
-    private Date endDate;
+	private Date endDate;
 
-    public String getTitle() {
-        return title;
-    }
+	private String postId;
 
-    /**
-     * setTitle
-     * @param title
-     */
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public String getPostId() {
+		return postId;
+	}
 
-    /**
-     * getUserName
-     * @return
-     */
-    public String getUserName() {
-        return userName;
-    }
+	public void setPostId(String postId) {
+		this.postId = postId;
+	}
 
-    /**
-     * setUserName
-     * @param userName
-     */
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    /**
-     * getPrice
-     * @return
-     */
-    public String getPrice() {
-        return price;
-    }
+	/**
+	 * setTitle
+	 * 
+	 * @param title
+	 */
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
+	/**
+	 * getUserName
+	 * 
+	 * @return
+	 */
+	public String getUserName() {
+		return userName;
+	}
 
-    public String getFeedback() {
-        return feedback;
-    }
+	/**
+	 * setUserName
+	 * 
+	 * @param userName
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    public void setFeedback(String feedback) {
-        this.feedback = feedback;
-    }
+	/**
+	 * getPrice
+	 * 
+	 * @return
+	 */
+	public String getPrice() {
+		return price;
+	}
 
-    public String getComment() {
-        return comment;
-    }
+	public void setPrice(String price) {
+		this.price = price;
+	}
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
+	public String getFeedback() {
+		return feedback;
+	}
 
-    public String getStatus() {
-        return status;
-    }
+	public void setFeedback(String feedback) {
+		this.feedback = feedback;
+	}
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+	public String getComment() {
+		return comment;
+	}
 
-    public Date getStartDate() {
-        return startDate;
-    }
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
+	public String getStatus() {
+		return status;
+	}
 
-    public Date getEndDate() {
-        return endDate;
-    }
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
 }
