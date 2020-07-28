@@ -8,8 +8,11 @@ import com.example.fjob.lib.component.receipt.ReceiptComponent;
 import com.example.fjob.lib.dataset.account.AccountDataset;
 import com.example.fjob.lib.dataset.jobhistory.JobParamDataset;
 import com.example.fjob.lib.dataset.receipt.ReceiptDataset;
+import com.example.fjob.lib.dataset.receipt.ReceiptHistoryDataset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ReceiptServiceImp implements ReceiptService {
@@ -45,7 +48,7 @@ public class ReceiptServiceImp implements ReceiptService {
             JobParamDataset job = new JobParamDataset();
             job.setPostId(receiptDataset.getJobId());
             job.setBidUser(receiptDataset.getBidUserName());
-            String price = bidComponent.selPrice(receiptDataset.getJobId(),receiptDataset.getBidUserName());
+            String price = bidComponent.selPrice(receiptDataset.getJobId(), receiptDataset.getBidUserName());
             job.setPrice(price);
             // Job is in progress
             job.setStatus("0");
@@ -97,5 +100,15 @@ public class ReceiptServiceImp implements ReceiptService {
         }
 
         return result;
+    }
+
+    @Override
+    public List<ReceiptHistoryDataset> getTransactionsAdmin() {
+        return receiptComponent.selTransactionsAdmin();
+    }
+
+    @Override
+    public List<ReceiptHistoryDataset> getUserTransactions(String userName) {
+        return receiptComponent.selUserTransactions(userName);
     }
 }
