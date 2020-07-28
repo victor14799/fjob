@@ -1,9 +1,11 @@
 package com.example.fjob.service.controller.admin;
 
 import com.example.fjob.lib.dataset.post.PostAdminOverviewDataset;
+import com.example.fjob.lib.dataset.receipt.ReceiptHistoryDataset;
 import com.example.fjob.service.datamodel.AdminDashboardDatamodel;
 import com.example.fjob.service.service.account.AccountService;
 import com.example.fjob.service.service.post.PostService;
+import com.example.fjob.service.service.receipt.ReceiptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,10 +18,13 @@ public class AdminController {
 
     private PostService postService;
 
+    private ReceiptService receiptService;
+
     @Autowired
-    public AdminController(AccountService accountService, PostService postService) {
+    public AdminController(AccountService accountService, PostService postService, ReceiptService receiptService) {
         this.accountService = accountService;
         this.postService = postService;
+        this.receiptService = receiptService;
     }
 
     @GetMapping("/dashboard")
@@ -46,4 +51,10 @@ public class AdminController {
     public boolean disableAccount(@PathVariable String userName) {
         return accountService.disableAccount(userName) > 0;
     }
+
+    @GetMapping("/receipts")
+    public List<ReceiptHistoryDataset> getTransactions(){
+        return receiptService.getTransactionsAdmin();
+    }
+
 }
