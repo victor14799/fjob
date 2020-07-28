@@ -103,7 +103,7 @@ public interface AccountMapper {
 //			+ "WHERE user_name = #{userName}")
 //	int updatePassword(@Param("password") String password);
 
-   
+
     //GET CONTACT
 
     @Select("SELECT COUNT(0) " +
@@ -142,8 +142,8 @@ public interface AccountMapper {
             + "role,"
             + "balance,"
             + "birthdate as birthdate, "
-			+ "gender as gender "
-			+ "FROM account "
+            + "gender as gender "
+            + "FROM account "
             + "WHERE user_name = #{userName}")
     AccountDataset getAllInfor(@Param("userName") String userName);
 
@@ -228,5 +228,11 @@ public interface AccountMapper {
             "(SELECT COUNT(0) FROM ACCOUNT WHERE IS_VERIFY ='1') AS verified " +
             "FROM ACCOUNT")
     UserAdminDashboardDataset selOverviewUser();
+
+    @Update("UPDATE ACCOUNT " +
+            "SET RANKED = #{ranked}," +
+            "UPD_DATE = clock_timestamp() " +
+            "WHERE USER_NAME = #{userName}")
+    void updateFeedBack(@Param("userName") String userName, @Param("ranked") String ranked);
 
 }

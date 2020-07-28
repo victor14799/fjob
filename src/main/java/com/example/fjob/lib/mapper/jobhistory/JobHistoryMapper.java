@@ -93,7 +93,8 @@ public interface JobHistoryMapper {
     		"	from job_history jh	" + 
     		"	inner join post p using(post_id)	" + 
     		"	inner join account a on p.user_name = a.user_name " + 
-    		"	where bid_user = #{username}")
+    		"	where bid_user = #{username} " +
+			"	AND jh.STATUS = '2' ")
     List<UserFeedback> selUserFeedback(@Param("username")String username);
     
     @Select("Select bid_user from job_history where post_id = #{post_id}")
