@@ -175,7 +175,8 @@ public interface AccountMapper {
             "EMAIL AS email " +
             "FROM ACCOUNT " +
             "WHERE USER_NAME  = #{userName} " +
-            "AND DEL_FLG != '1'")
+            "AND DEL_FLG != '1' " +
+            "AND ROLE ='0'")
     ApplicationUser login(@Param("userName") String userName);
 
     @Insert("INSERT INTO ACCOUNT" +
