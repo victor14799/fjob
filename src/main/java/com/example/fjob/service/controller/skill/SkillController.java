@@ -20,16 +20,22 @@ public class SkillController {
     }
 
     @GetMapping("")
-    public List<SkillDataset> selSkillCategory(){
+    public List<SkillDataset> selSkillCategory() {
         return service.getSkillCategory();
     }
-    
+
     @GetMapping("/{username}")
-    public List<UserSkill> selUserSkill(@PathVariable("username") String username){
+    public List<UserSkill> selUserSkill(@PathVariable("username") String username) {
         return service.getSkillOfUser(username);
     }
+
     @PutMapping("/updateSkill")
-    public int updateSkill(@RequestBody UserSkill userSkill,@RequestParam("newSkillId") String newSkillId){
-        return service.updateSkill(userSkill,newSkillId);
+    public int updateSkill(@RequestBody UserSkill userSkill, @RequestParam("newSkillId") String newSkillId) {
+        return service.updateSkill(userSkill, newSkillId);
+    }
+
+    @PostMapping("/insertSkill")
+    public int insertSkill(@RequestBody UserSkill userSkill) {
+        return service.insertSkill(userSkill);
     }
 }

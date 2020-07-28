@@ -32,4 +32,9 @@ public class SkillComponentImp implements SkillComponent{
     public int updateSkill(UserSkill userSkill,String newSkillId) {
         return mapper.updateSkill(userSkill,newSkillId);
     }
+
+    @Override
+    public int insertSkill(UserSkill userSkill) {
+        return mapper.insertSkill(userSkill);
+    }
 }

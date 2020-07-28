@@ -3,10 +3,7 @@ package com.example.fjob.lib.mapper.skill;
 import com.example.fjob.lib.dataset.skill.SkillDataset;
 import com.example.fjob.lib.dataset.skill.UserSkill;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -33,8 +30,13 @@ public interface SkillMapper {
 
     @Update("UPDATE has_skill " +
 			"SET skill_id = #{newSkillId}," +
-			"experience = #{userSkill.experience} " +
+			"experience = #{userSkill.experience}," +
+			"upd_date = clock_timestamp() " +
 			"WHERE user_name = #{userSkill.username} " +
 			"and skill_id = #{userSkill.skillId}")
 	int updateSkill(@Param("userSkill") UserSkill userSkill,@Param("newSkillId") String newSkillId);
+
+    @Insert("INSERT INTO has_skill(user_name,skill_id,experience,ins_date) " +
+			"values(#{userSkill.username},#{userSkill.skillId},#{userSkill.experience},clock_timestamp())")
+	int insertSkill(@Param("userSkill") UserSkill userSkill);
 }

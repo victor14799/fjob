@@ -34,4 +34,9 @@ public class SkillServiceImp implements SkillService {
     public int updateSkill(UserSkill userSkill,String newSkillId) {
         return component.updateSkill(userSkill,newSkillId);
     }
+
+    @Override
+    public int insertSkill(UserSkill userSkill) {
+        return component.insertSkill(userSkill);
+    }
 }

@@ -9,4 +9,5 @@ public interface SkillService {
     List<SkillDataset> getSkillCategory();
     List<UserSkill> getSkillOfUser(String username);
     int updateSkill(UserSkill userSkill,String newSkillId);
+    int insertSkill(UserSkill userSkill);
 }
