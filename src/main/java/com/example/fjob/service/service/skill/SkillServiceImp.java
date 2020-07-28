@@ -39,4 +39,9 @@ public class SkillServiceImp implements SkillService {
     public int insertSkill(UserSkill userSkill) {
         return component.insertSkill(userSkill);
     }
+
+    @Override
+    public int deleteSkill(UserSkill userSkill) {
+        return component.deleteSkill(userSkill);
+    }
 }

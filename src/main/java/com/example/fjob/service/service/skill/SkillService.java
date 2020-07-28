@@ -10,4 +10,5 @@ public interface SkillService {
     List<UserSkill> getSkillOfUser(String username);
     int updateSkill(UserSkill userSkill,String newSkillId);
     int insertSkill(UserSkill userSkill);
+    int deleteSkill(UserSkill userSkill);
 }

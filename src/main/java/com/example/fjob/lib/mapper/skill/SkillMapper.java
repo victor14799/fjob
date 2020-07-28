@@ -39,4 +39,8 @@ public interface SkillMapper {
     @Insert("INSERT INTO has_skill(user_name,skill_id,experience,ins_date) " +
 			"values(#{userSkill.username},#{userSkill.skillId},#{userSkill.experience},clock_timestamp())")
 	int insertSkill(@Param("userSkill") UserSkill userSkill);
+
+	@Delete("DELETE FROM has_skill " +
+			"WHERE user_name = #{userSkill.username} AND skill_id = #{userSkill.skillId}")
+	int deleteSkill(@Param("userSkill") UserSkill userSkill);
 }

@@ -38,4 +38,9 @@ public class SkillController {
     public int insertSkill(@RequestBody UserSkill userSkill) {
         return service.insertSkill(userSkill);
     }
+
+    @PostMapping("/deleteSkill")
+    public int deleteSkill(@RequestBody UserSkill userSkill) {
+        return service.deleteSkill(userSkill);
+    }
 }

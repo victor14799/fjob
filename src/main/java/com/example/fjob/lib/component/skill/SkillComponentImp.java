@@ -37,4 +37,11 @@ public class SkillComponentImp implements SkillComponent{
     public int insertSkill(UserSkill userSkill) {
         return mapper.insertSkill(userSkill);
     }
+
+    @Override
+    public int deleteSkill(UserSkill userSkill) {
+            return mapper.deleteSkill(userSkill);
+    }
+
+
 }
